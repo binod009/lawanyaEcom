@@ -1,12 +1,10 @@
 import "./App.css";
-import Navbar from "./components/Navbar";
+
 import HeroSection from "./components/HeroSection";
 import Carousel from "./components/Carousel";
 import Services from "./components/Services";
 import Testomonial from "./components/Testomonial";
 import { motion, useScroll } from "framer-motion";
-import { FaFacebookSquare } from "react-icons/fa";
-import { FaWhatsapp } from "react-icons/fa";
 import Footer from "./components/Footer";
 function App() {
   const { scrollYProgress } = useScroll();
