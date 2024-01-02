@@ -4,20 +4,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/effect-fade";
-import {
-  Autoplay,
-  Pagination,
-  Navigation,
-  EffectCreative,
-  EffectFade,
-} from "swiper/modules";
+import { Autoplay, Navigation, EffectFade } from "swiper/modules";
 const HeroSection = () => {
-  const containerStyle = {
-    backgroundImage: 'url("/assets/hero.jpg")',
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundAttachment: "fixed",
-  };
+  // const containerStyle = {
+  //   backgroundImage: 'url("/assets/hero.jpg")',
+  //   backgroundSize: "cover",
+  //   backgroundRepeat: "no-repeat",
+  //   backgroundAttachment: "fixed",
+  // };
 
   return (
     <>
@@ -47,6 +41,7 @@ const HeroSection = () => {
               loading="lazy"
               className="h-[100vh] w-full object-cover"
               src="http://tinyurl.com/7ycxt6bn"
+              alt="event-pic"
             />
           </SwiperSlide>
           <SwiperSlide className="h-[100%] w-[100%]">
@@ -54,7 +49,7 @@ const HeroSection = () => {
               loading="lazy"
               className="h-[100vh] w-full object-cover"
               src="http://tinyurl.com/bdfb2j8w"
-              alt="lady"
+              alt="event-pic"
             />
           </SwiperSlide>
           <SwiperSlide className="h-[100%] w-[100%]">
