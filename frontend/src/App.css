@@ -1,3 +1,21 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
 html {
-  font-family: "Playfair Display", serif;
+  font-family: "Lato", sans-serif;
+}
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background-color: blue;
+  transform-origin: 0%;
+}
+.slick-slide > div {
+  margin: 0 20px;
 }
