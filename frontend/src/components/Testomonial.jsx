@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Nextcard from "./Nextcard";
+
 import { Avatar } from "antd";
 import { FaQuoteLeft } from "react-icons/fa";
 import { DataofCard } from "../utils/customData";

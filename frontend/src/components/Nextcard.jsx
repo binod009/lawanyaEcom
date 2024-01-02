@@ -1,7 +1,7 @@
 import React from "react";
 import { FaQuoteLeft } from "react-icons/fa";
-import { Avatar, Space } from "antd";
-import { DataofCard } from "../utils/customData";
+import { Avatar } from "antd";
+
 const Nextcard = () => {
   return (
     <>
