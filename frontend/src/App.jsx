@@ -12,9 +12,8 @@ function App() {
     <>
       <HeroSection />
       <EventSection />
-
-      <Services />
-      <Testomonial />
+      {/* <Services /> */}
+      {/* <Testomonial /> */}
 
       <Footer />
       {/* <EventSection />

@@ -4,12 +4,12 @@ import EventsCard from "./Reusable/EventsCard";
 const EventSection = () => {
   return (
     <>
-      <div className="bg-[#eeebeb] h-auto w-full pb-12">
+      <div className="bg-[#eeebeb] h-auto w-full pb-12 ">
         <div className="text-center">
           <h5 className="text-slate-900 text-5xl font-bold p-5">Our Events</h5>
         </div>
         <div className="lg:max-w-7xl mx-auto p-8">
-          <div className="grid grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             <EventsCard />
             <EventsCard />
             <EventsCard />
