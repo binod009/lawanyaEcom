@@ -23,8 +23,8 @@ const EventSection = () => {
 };
 
 export default EventSection;
-{
-  /* <div className="flex flex-col justify-center items-center lg:max-w-7xl mx-auto">
+
+/* <div className="flex flex-col justify-center items-center lg:max-w-7xl mx-auto">
           <div className="h-[26rem] w-[20rem] bg-[#ffffff] flex flex-col items-center justify-center rounded-3xl ">
             <div className="h-44 w-full flex items-center justify-center ">
               <img
@@ -50,4 +50,3 @@ export default EventSection;
             </div>
           </div>
         </div> */
-}
