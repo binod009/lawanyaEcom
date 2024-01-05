@@ -1,10 +1,12 @@
 import React from "react";
 import { carddata } from "../utils/customData";
+import Carousel from "./Carousel";
 const Services = () => {
   return (
     <div className="bg-white min-h-dvh">
+      <Carousel />
       <div className="lg:max-w-7xl mx-auto">
-        <div className="lg:mx-14 text-center lg:mt-20 lg:mb-10 space-y-3">
+        <div className="lg:mx-14 text-center lg:mb-10 space-y-3">
           <p className="lg:text-3xl font-semibold text-slate-700">
             Our CPS program evolves with industries, keeping your
             <span className="text-blue-500 space-x-5"> skills</span> relevant.

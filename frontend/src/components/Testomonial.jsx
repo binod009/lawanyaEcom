@@ -2,7 +2,6 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 import { Avatar } from "antd";
 import { FaQuoteLeft } from "react-icons/fa";
 import { DataofCard } from "../utils/customData";
@@ -20,9 +19,9 @@ const Testomonial = () => {
   return (
     <>
       <div className="flex flex-col justify-around items-center lg:w-full h-[100dvh] bg-gradient-to-r from-[#f3c878] to-[#f37d85] text-center">
-        <p className="lg:mt-8 lg:text-6xl text-white font-semibold lg:p-8">
+        <h5 className="lg:mt-8 lg:text-6xl text-white font-semibold lg:p-8">
           Testomonial
-        </p>
+        </h5>
         <Slider
           {...settings}
           style={{

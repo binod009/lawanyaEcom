@@ -4,11 +4,11 @@ import "swiper/css";
 import { Autoplay } from "swiper/modules";
 const Carousel = () => {
   return (
-    <div>
-      <div className="lg:max-w-7xl mx-auto">
+    <div className="translate-y-[-3rem]">
+      <div className="lg:max-w-7xl mx-auto bg-white rounded-lg shadow-lg">
         <div className=" lg:flex items-center lg:flex-col h-[35vh] lg:p-5">
           <div>
-            <h3 className="lg:text-6xl text-slate-700 font-semibold lg:p-5">
+            <h3 className="lg:text-5xl text-slate-700 font-semibold lg:p-5">
               Our Partners
             </h3>
           </div>
@@ -20,7 +20,7 @@ const Carousel = () => {
             style={{
               maxWidth: "80rem",
               margin: "15px",
-              padding: "35px",
+              padding: "25px",
             }}
             modules={[Autoplay]}
             spaceBetween={50}

@@ -17,59 +17,63 @@ const HeroSection = () => {
     <>
       <Navbar />
       <div className="relative h-[100vh]">
-        <Swiper
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-          }}
-          effect="fade"
-          centeredSlides={true}
-          navigation={true}
-          modules={[Autoplay, Navigation, EffectFade]}
-        >
-          <SwiperSlide className="h-[100%] w-[100%]">
-            <img
-              loading="lazy"
-              className="h-[100vh] w-full object-cover"
-              src="http://tinyurl.com/2p894m2z"
-              alt="lady"
-            />
-          </SwiperSlide>
+        <div className="fixed z-[-10] top-0 left-0 w-full h-full backdrop-opacity-10 bg-black/50">
+          <Swiper
+            style={{}}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+            }}
+            effect="fade"
+            centeredSlides={true}
+            navigation={true}
+            modules={[Autoplay, Navigation, EffectFade]}
+          >
+            <SwiperSlide className="h-[100%] w-[100%]">
+              <img
+                loading="lazy"
+                className="h-[100vh] w-full object-cover"
+                src="http://tinyurl.com/2p894m2z"
+                alt="lady"
+              />
+            </SwiperSlide>
 
-          <SwiperSlide className="h-[100%] w-[100%]">
-            <img
-              loading="lazy"
-              className="h-[100vh] w-full object-cover"
-              src="http://tinyurl.com/7ycxt6bn"
-              alt="event-pic"
-            />
-          </SwiperSlide>
-          <SwiperSlide className="h-[100%] w-[100%]">
-            <img
-              loading="lazy"
-              className="h-[100vh] w-full object-cover"
-              src="http://tinyurl.com/bdfb2j8w"
-              alt="event-pic"
-            />
-          </SwiperSlide>
-          <SwiperSlide className="h-[100%] w-[100%]">
-            <img
-              loading="lazy"
-              className="h-[100vh] w-full object-cover"
-              src=" http://tinyurl.com/m6sycbhm"
-              alt="lady"
-            />
-          </SwiperSlide>
-        </Swiper>
+            <SwiperSlide className="h-[100%] w-[100%]">
+              <img
+                loading="lazy"
+                className="h-[100vh] w-full object-cover"
+                src="http://tinyurl.com/7ycxt6bn"
+                alt="event-pic"
+              />
+            </SwiperSlide>
+            <SwiperSlide className="h-[100%] w-[100%]">
+              <img
+                loading="lazy"
+                className="h-[100vh] w-full object-cover"
+                src="http://tinyurl.com/bdfb2j8w"
+                alt="event-pic"
+              />
+            </SwiperSlide>
+            <SwiperSlide className="h-[100%] w-[100%]">
+              <img
+                loading="lazy"
+                className="h-[100vh] w-full object-cover"
+                src=" http://tinyurl.com/m6sycbhm"
+                alt="lady"
+              />
+            </SwiperSlide>
+          </Swiper>
+        </div>
+
         {/* <div style={containerStyle}> */}
-        <div className="absolute top-0 left-0 z-20 right-0 h-[100vh] w-full backdrop-opacity-10 bg-black/50 ">
-          <div className="lg:max-w-7xl mx-auto h-screen  flex lg:flex-col items-start">
-            <div className="mt-44 max-w-4xl space-y-5">
-              <h1 className="text-white font-extrabold lg:text-7xl">
-                <span className="text-blue-400">Empowering </span>Schools to
-                Excel
+        <div className="absolute top-0 left-0 z-10 right-0 h-[100vh] w-full">
+          <div className="lg:max-w-7xl mx-auto h-screen  flex flex-col items-start">
+            <div className="mt-44 max-w-4xl space-y-2">
+              <h1 className="text-white font-extrabold text-5xl lg:text-7xl p-2 ">
+                <span className="text-blue-400">Empowering</span>
+                <p className="mt-4">Schools to Excel</p>
               </h1>
-              <h2 className="text-white font-extrabold lg:text-xl">
+              <h2 className="text-white p-2 font-normal lg:font-extrabold text-lg lg:text-xl">
                 Your Trusted Partner in Educational Excellence
               </h2>
             </div>
