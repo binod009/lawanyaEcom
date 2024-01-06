@@ -6,8 +6,8 @@ const Services = () => {
     <div className="bg-white min-h-dvh">
       <Carousel />
       <div className="lg:max-w-7xl mx-auto">
-        <div className="lg:mx-14 text-center lg:mb-10 space-y-3">
-          <p className="lg:text-3xl font-semibold text-slate-700">
+        <div className="mx-auto lg:mx-14 text-center lg:mb-10 space-y-3">
+          <p className="text-lg font-extrabold lg:text-3xl text-slate-700">
             Our CPS program evolves with industries, keeping your
             <span className="text-blue-500 space-x-5"> skills</span> relevant.
           </p>
@@ -16,14 +16,14 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-12 lg:mt-20 p-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:grid-cols-2 place-items-center xl:grid-cols-3 lg:mt-20 xl:gap-12 pb-8">
           {carddata &&
             carddata.map((card) => (
-              <div className="lg:shadow-lg lg:min-h-[350px] text-center space-y-2">
-                <p className="lg:text-2xl font-extrabold text-slate-600 lg:px-8 mt-28 text-start">
+              <div className="w-[20rem] h-[17rem] p-4 mt-8 flex flex-col justify-center items-start lg:justify-center xl:gap-5 xl:h-[350px] shadow-lg space-y-2 xl:p-8">
+                <p className="text-start text-lg lg:text-2xl font-extrabold text-slate-600">
                   {card.title}
                 </p>
-                <p className="text-slate-600 text-thin font-light lg:px-8 text-start leading-relaxed">
+                <p className="text-start text-slate-600 text-thin font-medium leading-7">
                   {card.description}
                 </p>
               </div>

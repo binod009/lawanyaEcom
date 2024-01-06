@@ -20,13 +20,13 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="z-40 min-w-full bg-gradient-to-r from-orange-300 to-orange-500 text-white py-2.5">
-        <div className="flex justify-center flex-col items-center md:flex-col md:justify-center md:items-center lg:flex-row lg:max-w-7xl mx-auto lg:justify-between">
-          <div className="text-white sm:font-semibold md:font-normal text-xs md:text-lg lg:text-lg lg:font-light">
+      <div className="p-2.5 z-40 min-w-full bg-gradient-to-r from-orange-300 to-orange-500 text-white md:p-2 lg:p-4">
+        <div className="flex justify-center flex-col items-center gap-2 md:flex-col md:gap-2 md:justify-center md:items-center lg:flex-row lg:max-w-7xl mx-auto lg:justify-between">
+          <div className="text-white sm:font-semibold md:font-medium text-xs text-[16px] lg:text-lg lg:font-light">
             Call Us At:+9779817062771
           </div>
-          <div className="p-1 flex items-center justify-center lg:justify-between gap-3 lg:gap-4">
-            <div className="text-center text-white font-semibold text-xs md:text-lg lg:text-md lg:font-light">
+          <div className="flex items-center justify-center lg:justify-between gap-3 lg:gap-4">
+            <div className="text-center text-white font-semibold text-xs text-[16px] lg:text-md lg:font-light">
               contact@devsbinod.com
             </div>
             <div>
@@ -39,7 +39,7 @@ const Navbar = () => {
         </div>
       </div>
       <div
-        className={`z-40 hover:bg-[#fff] cursor-pointer py-4 lg:py-4 w-full ${
+        className={`z-40 cursor-pointer py-4 lg:py-4 w-full ${
           scroll
             ? "fixed top-0 z-[70] lg:transition-all lg:ease-out lg:duration-100 bg-gradient-to-r from-[#e33131] to-red-300 py-4 lg:py-4"
             : "absolute lg:top-10"

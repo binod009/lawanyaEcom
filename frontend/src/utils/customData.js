@@ -1,33 +1,34 @@
 export const carddata = [
   {
-    title: " Lorem ipsum dolor sit amet.",
+    title: "Strategic Planning",
     description:
-      " Lorem ipsum dolor sit,amet consectetur adipisicing elit Voluptates laudantium perferendis fuga nesciunt nobis aperiamreiciendis unde dignissimos nihil deleniti",
+      "Assisting schools and colleges in developing long-term strategic plans to align their mission, vision, and goals, and providing guidance on effective implementation.",
   },
   {
-    title: " Lorem ipsum dolor sit amet.",
+    title: "Curriculum Development",
     description:
-      " Lorem ipsum dolor sit,amet consectetur adipisicing elit Voluptates laudantium perferendis fuga nesciunt nobis aperiamreiciendis unde dignissimos nihil deleniti",
+      " upports learning outcomes. ipsum dolor sit,amet consectetur adipisicing elit Voluptates laudantium perferendis fuga nesciunt nobis aperiamreiciendis unde dignissimos nihil deleniti",
   },
   {
-    title: " Lorem ipsum dolor sit amet.",
+    title: "Technology Integration",
     description:
-      " Lorem ipsum dolor sit,amet consectetur adipisicing elit Voluptates laudantium perferendis fuga nesciunt nobis aperiamreiciendis unde dignissimos nihil deleniti",
+      "Advising on the integration of technology into the classroom, recommending suitable educational tools, and providing training to educators on utilizing technology for effective teaching and learning make a little short",
   },
   {
-    title: " Lorem ipsum dolor sit amet.",
+    title: "Teacher Training and Professional Development",
     description:
-      " Lorem ipsum dolor sit,amet consectetur adipisicing elit Voluptates laudantium perferendis fuga nesciunt nobis aperiamreiciendis unde dignissimos nihil deleniti",
+      "Conducting workshops and training sessions for educators to enhance their teaching skills, incorporate new pedagogical approaches,",
+  },
+
+  {
+    title: "Assessment and Evaluation Services:",
+    description:
+      "Developing assessment tools, conducting evaluations, and analyzing data to help institutions measure student performance, identify areas for improvement, and implement targeted interventions.",
   },
   {
-    title: " Lorem ipsum dolor sit amet.",
+    title: "Student Support Services",
     description:
-      " Lorem ipsum dolor sit,amet consectetur adipisicing elit Voluptates laudantium perferendis fuga nesciunt nobis aperiamreiciendis unde dignissimos nihil deleniti",
-  },
-  {
-    title: " Lorem ipsum dolor sit amet.",
-    description:
-      " Lorem ipsum dolor sit,amet consectetur adipisicing elit Voluptates laudantium perferendis fuga nesciunt nobis aperiamreiciendis unde dignissimos nihil deleniti",
+      "Offering programs and services to support students' social and emotional well-being, such as counseling, mentorship programs, and character education initiatives.",
   },
 ];
 
