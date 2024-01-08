@@ -22,7 +22,7 @@ const Navbar = () => {
     <>
       <div className="py-1 z-40 min-w-full bg-gradient-to-r from-orange-300 to-orange-500 text-white md:p-2 lg:p-4">
         <div className="flex justify-center flex-col items-center gap-1.5 md:flex-col md:gap-2 md:justify-center md:items-center lg:flex-row lg:max-w-7xl mx-auto lg:justify-between">
-          <div className="text-white text-base font-medium md:font-medium  text-[16px] lg:text-lg lg:font-light">
+          <div className="lg:ml-8 lg:mr-12 text-white text-base font-medium md:font-medium  text-[16px] lg:text-lg lg:font-light">
             Call Us At:+9779817062771
           </div>
           <div className="flex items-center justify-center lg:justify-between gap-3 lg:gap-4">
@@ -47,14 +47,14 @@ const Navbar = () => {
       >
         {/* Scroll animation */}
         <motion.div
-          className="z-[120] fixed top-[60px] left-0 right-0 h-[2px] bg-purple-500 origin-[0%]"
+          className="z-[120] fixed top-[60px] lg:top-[72px] left-0 right-0 h-[2px] bg-purple-500 origin-[0%]"
           style={{ scaleX: scrollYProgress }}
         />
         <div className=" lg:hidden z-40 p-1.5">
           <AiOutlineMenu size={32} color="orange" onClick={openDrawer} />
         </div>
         <div className="">
-          <div className="hidden lg:max-w-7xl mx-auto lg:flex justify-end items-center p-2">
+          <div className="hidden lg:max-w-7xl mx-auto lg:mr-8 lg:flex justify-end items-center p-2">
             <ul className="flex lg:gap-8 justify-between items-center text-slate-800 font-semibold">
               <li>Home</li>
               <li>Contact</li>

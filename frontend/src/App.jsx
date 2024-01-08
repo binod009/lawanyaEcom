@@ -15,7 +15,7 @@ function App() {
       <EventSection />
       <Services />
       {/* <Testomonial /> */}
-      {/* <Footer /> */}
+      <Footer />
       {/* <EventSection />
 
        

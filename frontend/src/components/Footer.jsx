@@ -2,10 +2,10 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="bg-black h-full w-full">
-      <div className="flex lg:flex-col lg:max-w-7xl mx-auto h-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full pt-16 xl:pt-[8rem] xl:gap-12 m-5 h-2/3">
-          <div className="text-white lg:max-h-72 space-y-5">
+    <div className="bg-black h-full w-full mx-auto">
+      <div className="mx-8 flex lg:flex-col max-w-7xl h-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-16 lg:grid-cols-3 lg:h-screen lg:place-items-center xl:grid-cols-4 pt-16 xl:pt-[8rem] xl:gap-12 h-2/3">
+          <div className="lg:col-span-3 text-white lg:h-52 space-y-5">
             <div className="flex items-center gap-5 ml-auto text-xl text-white font-bold">
               <img
                 className="object-cover h-16 w-20"
@@ -40,7 +40,7 @@ const Footer = () => {
               <li>Online retail</li>
             </ul>
           </div>
-          <div className="mt-5 xl:ml-20 text-white lg:max-h-72 lg:min-w-[16.6%] lg:space-y-2 ">
+          <div className="mt-5 xl:ml-20 text-white lg:max-h-72 lg:min-w-[16.6%] lg:space-y-2">
             <h3 className="font-bold">Events</h3>
             <ul className="font-light space-y-2">
               <li>Contact</li>
@@ -51,7 +51,6 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="hidden xl:flex border-t-[1px] border-white"></div>
       </div>
     </div>
   );
