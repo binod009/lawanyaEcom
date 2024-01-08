@@ -19,7 +19,7 @@ const Testomonial = () => {
   return (
     <>
       <div className="flex flex-col justify-around items-center lg:w-full h-[100dvh] bg-gradient-to-r from-[#f3c878] to-[#f37d85] text-center">
-        <h5 className="lg:mt-8 lg:text-6xl text-white font-semibold lg:p-8">
+        <h5 className=" text-4xl lg:mt-8 lg:text-6xl text-white font-semibold lg:p-8">
           Testomonial
         </h5>
         <Slider

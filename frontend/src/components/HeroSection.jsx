@@ -68,16 +68,16 @@ const HeroSection = () => {
         {/* <div style={containerStyle}> */}
         <div className="absolute top-0 left-0 z-10 right-0 h-[100vh] w-full">
           <div className="lg:max-w-7xl mx-auto h-screen  flex flex-col items-start">
-            <div className="mt-44 max-w-4xl space-y-2">
-              <h1 className="text-white font-extrabold text-5xl lg:text-7xl p-2 ">
+            <div className="mx-8 mt-44 max-w-4xl space-y-2">
+              <h1 className="text-white font-extrabold text-4xl lg:text-7xl p-2 ">
                 <span className="text-blue-400">Empowering</span>
                 <p className="mt-4">Schools to Excel</p>
               </h1>
-              <h2 className="text-white p-2 font-normal lg:font-extrabold text-lg lg:text-xl">
+              <h2 className="text-white p-2 font-normal lg:font-extrabold text-2xl lg:text-xl">
                 Your Trusted Partner in Educational Excellence
               </h2>
             </div>
-            <div className="flex items-center justify-items-center bg-orange-500 px-14 py-2 rounded-full mt-3 cursor-pointer hover:bg-orange-600 transition-all ease-in-out">
+            <div className="mx-8 flex items-center justify-items-center bg-orange-500 px-14 py-2 rounded-full mt-3 cursor-pointer hover:bg-orange-600 transition-all ease-in-out">
               <p className="text-white font-medium">Events</p>
             </div>
           </div>
