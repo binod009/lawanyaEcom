@@ -9,7 +9,6 @@ const settings = {
   variableWidth: true,
   slidesToShow: 1,
   slidesToScroll: 1,
-
   dots: false,
   cssEase: "linear",
   autoplay: true,
@@ -62,7 +61,6 @@ const Carousel = () => {
             {...settings}
             style={{
               display: "block",
-
               justifyItems: "center",
               alignItems: "center",
               padding: "20px",

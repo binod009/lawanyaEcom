@@ -1,4 +1,5 @@
 * {
+  padding: 0;
   margin: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
@@ -18,5 +19,17 @@ html {
 }
 
 .slick-slide > div {
-  margin: 0 30px !important;
+  margin: 0 35px !important;
+}
+
+@media screen and (min-width: 1024) {
+  .slick-slide > div {
+    margin: 0 0 0 20px;
+  }
+}
+
+@media screen and (min-width: 1440) {
+  .slick-slide > div {
+    padding: 15px !important;
+  }
 }

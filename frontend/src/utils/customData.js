@@ -57,16 +57,4 @@ export const DataofCard = [
     review:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit.Fugit dolores incidunt laborum perspiciatis sunt asperiores",
   },
-  {
-    name: "Jenniffer lopsh",
-    img: "https://thumbs.dreamstime.com/b/happy-young-indian-woman-showing-copy-space-wow-look-here-portarit-smiling-lady-holding-outstretched-hand-open-palm-212077362.jpg",
-    review:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit.Fugit dolores incidunt laborum perspiciatis sunt asperiores",
-  },
-  {
-    name: "Jenniffer lopsh",
-    img: "https://thumbs.dreamstime.com/b/happy-young-indian-woman-showing-copy-space-wow-look-here-portarit-smiling-lady-holding-outstretched-hand-open-palm-212077362.jpg",
-    review:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit.Fugit dolores incidunt laborum perspiciatis sunt asperiores",
-  },
 ];

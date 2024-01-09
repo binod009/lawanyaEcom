@@ -2,27 +2,28 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="bg-black h-full w-full mx-auto">
-      <div className="mx-8 flex lg:flex-col max-w-7xl h-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-16 lg:grid-cols-3 lg:h-screen lg:place-items-center xl:grid-cols-4 pt-16 xl:pt-[8rem] xl:gap-12 h-2/3">
-          <div className="lg:col-span-3 text-white lg:h-52 space-y-5">
-            <div className="flex items-center gap-5 ml-auto text-xl text-white font-bold">
+    <div className="bg-slate-900 h-full mx-auto lg:h-full">
+      <div className="mx-8 flex items-center justify-center ">
+        <div className="grid grid-cols-1 pt-16 gap-5 lg:space-x-12  xl:space-x-8 md:grid-cols-2 md:place-items-start md:gap-16 md:pt-16 lg:grid-cols-3 lg:gap-y-0 lg:h-screen lg:place-items-start  xl:grid-cols-4 xl:place-items-stretch h-2/3 xl:h-screen xl:mt-[5rem]">
+          <div className="lg:col-span-3 xl:col-auto lg:text-start text-white space-y-5 xl:w-[250px] xl:h-[350px] ">
+            <div className="flex items-center justify-center gap-5 ml-auto text-xl text-white font-bold">
               <img
-                className="object-cover h-16 w-20"
+                className="object-cover h-16 w-20 xl:h-28 xl:w-28"
                 src="https://scontent.fktm3-1.fna.fbcdn.net/v/t39.30808-6/329651997_882705219666501_2015514526253202395_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=iyrES3bR0FIAX8OORVJ&_nc_ht=scontent.fktm3-1.fna&oh=00_AfA1eLa-LKM237UmYjOPhEI6iYSRGmKWzWFlfNpd481spA&oe=6597F88C"
                 alt="logo"
               />
-              <p>Lawanya International Books</p>
+              <p className="xl:text-lg">Lawanya International Books</p>
             </div>
-            <p className="text-start  text-white text-base">
+            <p className="text-start lg:text-start text-white text-base xl:text-lg">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga
               expedita animi quis velit quos eligendi asperiores autem fugiat
               magni similique?
             </p>
           </div>
-          <div className="mt-5 xl:ml-20 text-white lg:max-h-72 lg:min-w-[16.6%] lg:space-y-2">
-            <h3 className="font-bold">About</h3>
-            <ul className="font-light space-y-2">
+
+          <div className="lg:w-44 lg:p-5 md:text-center md:min-w-[200px] text-white lg:max-h-72 lg:min-w-[calc(100%/4)] xl:min-w-[calc(100%/4)] lg:space-y-2 ">
+            <h3 className="font-bold xl:text-4xl">About</h3>
+            <ul className="font-light space-y-2 xl:text-lg">
               <li>Sell online</li>
               <li>Features</li>
               <li>Examples</li>
@@ -30,9 +31,10 @@ const Footer = () => {
               <li>Online retail</li>
             </ul>
           </div>
-          <div className="mt-5 xl:ml-20 text-white lg:max-h-72 lg:min-h-8-w-[16.6%] lg:space-y-2">
-            <h3 className="font-bold">Services</h3>
-            <ul className="font-light space-y-2">
+
+          <div className="lg:w-44 lg:p-5  md:text-center text-white lg:max-h-72 md:min-w-[200px] lg:min-w-[calc(100%/4)] xl:min-w-[calc(100%/4)] lg:space-y-2">
+            <h3 className="font-bold xl:text-4xl">Services</h3>
+            <ul className="font-light space-y-2 xl:text-lg">
               <li>Events</li>
               <li>News</li>
               <li>Awards</li>
@@ -40,9 +42,10 @@ const Footer = () => {
               <li>Online retail</li>
             </ul>
           </div>
-          <div className="mt-5 xl:ml-20 text-white lg:max-h-72 lg:min-w-[16.6%] lg:space-y-2">
-            <h3 className="font-bold">Events</h3>
-            <ul className="font-light space-y-2">
+
+          <div className="lg:w-44 lg:p-5 md:text-center text-white lg:max-h-72 md:min-w-[200px] lg:min-w-[calc(100%/4)] xl:min-w-[calc(100%/4)] lg:space-y-2">
+            <h3 className="font-bold xl:text-4xl">Events</h3>
+            <ul className="font-light space-y-2 xl:text-lg">
               <li>Contact</li>
               <li>Services</li>
               <li>Team</li>
