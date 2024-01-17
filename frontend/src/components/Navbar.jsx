@@ -39,7 +39,7 @@ const Navbar = () => {
         </div>
       </div>
       <div
-        className={`z-40 cursor-pointer lg:py-4 w-full ${
+        className={`z-40 cursor-pointer lg:py-5 w-full ${
           scroll
             ? "fixed top-0 z-[70] lg:transition-all lg:ease-out lg:duration-100 bg-gradient-to-r from-[#e33131] to-red-300  py-2 lg:py-4"
             : "absolute lg:top-10"
@@ -47,21 +47,20 @@ const Navbar = () => {
       >
         {/* Scroll animation */}
         <motion.div
-          className="z-[120] fixed top-[60px] lg:top-[72px] left-0 right-0 h-[2px] bg-purple-500 origin-[0%]"
+          className="z-[120] fixed top-[55px] lg:top-[78px] xl:top-[78px] left-0 right-0 h-[2px] bg-purple-500 origin-[0%]"
           style={{ scaleX: scrollYProgress }}
         />
-        <div className=" lg:hidden z-40 p-1.5">
-          <AiOutlineMenu size={32} color="orange" onClick={openDrawer} />
+        <div className="lg:hidden z-40 p-1.5">
+          <AiOutlineMenu size={28} color="orange" onClick={openDrawer} />
         </div>
-        <div className="">
-          <div className="hidden lg:max-w-7xl mx-auto lg:mr-8 lg:flex justify-end items-center p-2">
-            <ul className="flex lg:gap-8 justify-between items-center text-slate-800 font-semibold">
-              <li>Home</li>
-              <li>Contact</li>
-              <li>Features</li>
-              <li>About</li>
-            </ul>
-          </div>
+
+        <div className=" hidden w-screen lg:mr-8 lg:flex justify-end items-center p-2">
+          <ul className="flex lg:gap-8 justify-between lg:mr-[50px] items-center text-white font-semibold">
+            <li>Home</li>
+            <li>Contact</li>
+            <li>Features</li>
+            <li>About</li>
+          </ul>
         </div>
 
         <Drawer

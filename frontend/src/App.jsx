@@ -7,7 +7,7 @@ import Testomonial from "./components/Testomonial";
 
 import Footer from "./components/Footer";
 import EventSection from "./components/EventSection";
-import Carousel from "./components/Carousel";
+
 function App() {
   return (
     <>
@@ -16,13 +16,6 @@ function App() {
       <Services />
       <Testomonial />
       <Footer />
-
-      {/* <EventSection />
-
-       
-      
-
-     */}
     </>
   );
 }

@@ -4,7 +4,7 @@ import EventsCard from "./Reusable/EventsCard";
 const EventSection = () => {
   return (
     <>
-      <div className="bg-[#eeebeb] pb-20 h-auto w-full lg:pb-12">
+      <div className="bg-white pb-20 h-auto w-full lg:pb-12">
         <div className="text-center">
           <h5 className="text-4xl text-slate-900 font-bold p-5">Our Events</h5>
         </div>

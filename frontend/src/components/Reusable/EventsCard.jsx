@@ -2,7 +2,7 @@ import React from "react";
 
 const EventsCard = () => {
   return (
-    <div className="md:h-[20rem] w-full lg:w-[18rem] bg-[#fff] md:flex md:flex-col md:items-center md:justify-center rounded-lg hover:shadow-lg transition-shadow ease-in">
+    <div className="md:h-[20rem] w-full lg:w-[18rem] bg-[#fff] md:flex md:flex-col md:items-center md:justify-center rounded-lg shadow-lg hover:shadow-lg transition-shadow ease-in">
       <div className="h-36 w-full">
         <img
           className="h-32 object-cover w-full md:object-cover md:w-full md:h-44 lg:p-3 "

@@ -28,6 +28,12 @@ html {
   }
 }
 
+@media screen and (min-width: 425) {
+  .slick {
+    background-color: red !important;
+    height: 100px !important;
+  }
+}
 @media screen and (min-width: 1440) {
   .slick-slide > div {
     padding: 15px !important;
