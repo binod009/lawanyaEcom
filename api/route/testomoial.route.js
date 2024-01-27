@@ -1,16 +1,14 @@
 const express = require("express");
-const app = express();
+const Auth = require("../app/middleware/auth");
+const uploader = require("../app/middleware/uploader");
+const TestomonialController = require("../app/controller/testomonial.controller");
+const test_ctrl = new TestomonialController();
+const app = express.Router();
 
-app.post("/testomonial", (req, res) => {
-  res.json({
-    messaage: "testomonial created successfully",
-  });
-});
+app
+  .route("/testomonial")
+  .post(Auth, uploader.single("clientimage"), test_ctrl.createTestomonial)
+  .get(Auth, test_ctrl.GetTestomonial);
+app.route("/testomonial/:id").delete(Auth, test_ctrl.DeleteTestomonial);
 
-app.get("/testomonial", (req, res) => {
-  res.json({
-    messaage: "here is your testomonial data",
-    result: [],
-  });
-});
 module.exports = app;

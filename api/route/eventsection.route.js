@@ -1,17 +1,15 @@
 const express = require("express");
-const app = express();
+const EventController = require("../app/controller/event.controller");
+const Auth = require("../app/middleware/auth");
+const uploader = require("../app/middleware/uploader");
+const Event_ctrl = new EventController();
+const app = express.Router();
 
-app.post("/", (req, res) => {
-  res.json({
-    message: "event created successfully",
-  });
-});
+app
+  .route("/")
+  .post(Auth, uploader.single("eventimage"), Event_ctrl.CreateEvent)
+  .get(Auth, Event_ctrl.GetEvents);
 
-app.get("/event", (req, res) => {
-  res.json({
-    messaage: "here is your evet data",
-    result: [],
-  });
-});
+app.route("/:eventid").delete(Auth, Event_ctrl.deleteEvent);
 
 module.exports = app;

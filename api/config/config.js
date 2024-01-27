@@ -1,4 +1,5 @@
 const Config = {
+  ENVIRONMENT: "dev",
   SMTP: {
     HOST: "sandbox.smtp.mailtrap.io",
     PORT: 465,
@@ -7,6 +8,19 @@ const Config = {
     FROM: "noreply@test.com",
     TLS: false,
   },
+  DB: {
+    PROTOCOL: "mongodb",
+    HOST: "127.0.0.1",
+    NAME: "lawanya",
+    USER: "",
+    PWD: "",
+    PORT: 27017,
+  },
 };
 
+// DB: {
+//   host: `mongodb+srv://${[process.env.MONGODB_USERNAME]}:${
+//     process.env.MONGODB_PASSWORD
+//   }@cluster0.8brv6gn.mongodb.net/`;
+// }
 module.exports = Config;

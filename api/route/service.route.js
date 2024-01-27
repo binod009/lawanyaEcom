@@ -15,3 +15,7 @@ app.get("/service", (req, res) => {
 });
 
 module.exports = app;
+
+//username:lawanya
+//password:C5LMo5FH1oif6HyO
+//mongodb+srv://<username>:<password>@cluster0.8brv6gn.mongodb.net/

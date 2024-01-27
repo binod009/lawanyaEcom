@@ -1,17 +1,16 @@
 const express = require("express");
-const app = express();
+const Auth = require("../app/middleware/auth");
+const uploader = require("../app/middleware/uploader");
+const bannerController = require("../app/controller/banner.controller");
 
-app.post("/banner", (req, res) => {
-  res.json({
-    messaage: "banner created successfully",
-  });
-});
+let banner_ctrl = new bannerController();
+const app = express.Router();
 
-app.get("/banner", (req, res) => {
-  res.json({
-    messaage: "here is your banner data",
-    result: [],
-  });
-});
+app
+  .route("/banner")
+  .get(Auth, banner_ctrl.GetAllBanner)
+  .post(Auth, uploader.single("image"), banner_ctrl.bannerUpload);
+
+app.route("/banner/:id").delete(Auth, banner_ctrl.deleteBanner);
 
 module.exports = app;

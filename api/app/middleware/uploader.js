@@ -19,7 +19,6 @@ const imageFilter = (req, file, next) => {
   if (allowed.includes(ext.toLowerCase())) {
     next(null, true); //passing true for acceptance for file if you want to reject pass false
   } else {
-    console.log("am here in else");
     next({ status: 400, msg: "Image file type not supported" });
   }
 };
