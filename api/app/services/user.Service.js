@@ -26,6 +26,17 @@ class UserService extends DbService {
     }
   };
 
+  validateUserlogin = (data) => {
+    let userloginSchema = Joi.object({
+      email: Joi.string().email().required(),
+      password: Joi.string().min(3).required(),
+    });
+    let login_res = userloginSchema.validate(data);
+    if (login_res.error) {
+      throw this.joiErrorModifier(login_res);
+    }
+  };
+
   //creates new ueser into the database
   createUser = async (data) => {
     try {
@@ -56,6 +67,16 @@ class UserService extends DbService {
     } catch (err) {
       throw err;
     }
+  };
+
+  //function extract the error modified it return.
+  joiErrorModifier = (validationErr) => {
+    let fieldErrorType = validationErr.error.details[0].path.pop();
+    let customErr = {
+      [fieldErrorType]: validationErr.error.details[0].message,
+    };
+    console.log("customError", customErr);
+    return customErr;
   };
 }
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Drawer } from "antd";
-import { AiOutlineMenu } from "react-icons/ai";
 import { RiMenu2Line } from "react-icons/ri";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
@@ -51,9 +50,9 @@ const Navbar = () => {
           className="z-[120] fixed top-[55px] lg:top-[78px] xl:top-[78px] left-0 right-0 h-[2px] bg-purple-500 origin-[0%]"
           style={{ scaleX: scrollYProgress }}
         />
-        {/* <div className="lg:hidden z-40 p-1.5">
+        <div className="lg:hidden z-40 p-1.5">
           <RiMenu2Line size={28} color="orange" onClick={openDrawer} />
-        </div> */}
+        </div>
 
         <div className=" hidden w-screen lg:mr-8 lg:flex justify-end items-center p-2">
           <ul className="flex lg:gap-8 justify-between lg:mr-[50px] items-center text-white font-semibold">

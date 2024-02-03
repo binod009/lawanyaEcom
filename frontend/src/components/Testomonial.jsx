@@ -87,8 +87,8 @@ const Testomonial = () => {
 };
 
 export default Testomonial;
-{
-  /* <div
+
+/* <div
               key={item.name}
               className="h-80 :w-60 flex items-start bg-white lg:shadow-xl rounded-md p-5"
             >
@@ -105,4 +105,3 @@ export default Testomonial;
                 </div>
               </div>
             </div> */
-}

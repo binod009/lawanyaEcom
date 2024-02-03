@@ -1,10 +1,11 @@
 const express = require("express");
-const app = express();
-const routes = require("./route/index");
 const helmet = require("helmet");
-require("dotenv").config();
-
+const Cors = require("cors");
+const app = express();
 app.use(helmet());
+app.use(Cors());
+const routes = require("./route/index");
+require("dotenv").config();
 
 app.use("/assets", express.static("public/")); ///setting public directory for accessing file and images
 app.use(express.json());

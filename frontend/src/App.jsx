@@ -1,21 +1,19 @@
 import "./App.css";
-
-import HeroSection from "./components/HeroSection";
-
-import Services from "./components/Services";
-import Testomonial from "./components/Testomonial";
-
-import Footer from "./components/Footer";
-import EventSection from "./components/EventSection";
+import { Route, Routes } from "react-router-dom";
+import AdminDashboard from "./components/admindashboard/AdminDashboard";
+import Client from "./components/client/Client";
+import AdminLogin from "./components/admindashboard/admincomponents/AdminLogin";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <>
-      <HeroSection />
-      <EventSection />
-      <Services />
-      <Testomonial />
-      <Footer />
+      <ToastContainer />
+      <Routes>
+        <Route path="/" element={<Client />} />
+        <Route path="/login" element={<AdminLogin />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+      </Routes>
     </>
   );
 }

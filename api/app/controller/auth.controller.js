@@ -15,26 +15,30 @@ class AuthController {
     let data = req.body;
 
     try {
+      this.user_svc.validateUserlogin(data);
       let loggedInUser = await this.user_svc.getUserByEmail(data);
-      if (
-        loggedInUser &&
-        bcrypt.compareSync(data.password, loggedInUser[0].password)
-      ) {
-        let token = jwt.sign(
-          { user_id: loggedInUser[0]._id },
-          process.env.JWT_KEY
-        );
-        res.status(200).json({
-          result: {
-            user: loggedInUser[0],
-            access_Token: token,
-          },
-        });
-      } else {
-        next({ status: 400, msg: "Credentials does not match" });
+      if (loggedInUser.length > 0) {
+        if (
+          loggedInUser &&
+          bcrypt.compareSync(data.password, loggedInUser[0].password)
+        ) {
+          let token = jwt.sign(
+            { user_id: loggedInUser[0]._id },
+            process.env.JWT_KEY
+          );
+          res.status(200).json({
+            result: {
+              user: loggedInUser[0],
+              access_Token: token,
+            },
+          });
+        } else {
+          next({ status: 400, msg: "Password didnot matched" });
+        }
       }
+      next({ status: 400, msg: "Email not found" });
     } catch (excp) {
-      next({ status: 400, msg: excp });
+      next({ status: 422, msg: excp });
     }
     //validation the username and email
 

@@ -3,7 +3,7 @@ const app = express();
 
 app.post(
   "/logo",
-  (req, res, next) => {
+  async(req, res, next) => {
     req._id = "uaid9292902k";
     next();
   },
