@@ -25,9 +25,19 @@
 
 .ant-form-item-label > label {
   color: gray !important;
-  font-size: 1.2em !important;
+  font-size: 1em !important;
 }
 
 .buttonhover:hover {
   background-color: #d2620c !important;
+}
+
+.createbtnhover:hover {
+  background-color: #ec771d !important;
+}
+
+.upload-list-inline .ant-upload-list-item {
+  float: left;
+  width: 200px;
+  margin-inline-end: 8px;
 }

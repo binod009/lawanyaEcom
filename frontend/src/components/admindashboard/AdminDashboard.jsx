@@ -3,7 +3,7 @@ import { Avatar, Collapse } from "antd";
 import { AiFillAppstore } from "react-icons/ai";
 import { GoHome } from "react-icons/go";
 import CarouselForm from "./admincomponents/CarouselForm";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const text = `
   A dog is a type of domesticated animal.
   Known for its loyalty and faithfulness,
@@ -42,15 +42,15 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     let token = localStorage.getItem("access_Token");
-    // if (!token) navigate("/login");
-  }, []);
+    if (!token) navigate("/login");
+  }, [navigate]);
 
   const onChange = (key) => {
     console.log(key);
   };
   return (
     <>
-      <div className="w-full h-screen font-bold flex bg-[#f5f5f5]">
+      <div className="w-full h-screen font-bold flex bg-[#fff]">
         <div className="w-64 rounded-lg m-1.5 text-white h-auto bg-[#696cff] shadow-4xl">
           <div className="flex items-center gap-5 shadow-lg m-1.5 rounded-md p-4">
             <div>

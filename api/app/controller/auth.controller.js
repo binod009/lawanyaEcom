@@ -13,17 +13,19 @@ class AuthController {
 
   login = async (req, res, next) => {
     let data = req.body;
-
     try {
       this.user_svc.validateUserlogin(data);
       let loggedInUser = await this.user_svc.getUserByEmail(data);
-      if (loggedInUser.length > 0) {
+
+      if (loggedInUser.length === 0) {
+        next({ status: 401, msg: "Email not found" });
+      } else {
         if (
           loggedInUser &&
           bcrypt.compareSync(data.password, loggedInUser[0].password)
         ) {
           let token = jwt.sign(
-            { user_id: loggedInUser[0]._id },
+            { user_id: loggedInUser[0]?._id },
             process.env.JWT_KEY
           );
           res.status(200).json({
@@ -33,10 +35,9 @@ class AuthController {
             },
           });
         } else {
-          next({ status: 400, msg: "Password didnot matched" });
+          next({ status: 401, msg: "Password didnot matched" });
         }
       }
-      next({ status: 400, msg: "Email not found" });
     } catch (excp) {
       next({ status: 422, msg: excp });
     }

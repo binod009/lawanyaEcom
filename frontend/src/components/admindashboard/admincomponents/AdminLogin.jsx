@@ -1,22 +1,18 @@
-import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { Button, Input, Form, message } from "antd";
+import { Button, Input, Form } from "antd";
 import { useNavigate } from "react-router-dom";
 import auth_svc from "../../service/auth.servies";
 const AdminLogin = () => {
-  const [errData, setErrData] = useState({
-    email: null,
-    password: null,
-  });
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const handleSubmit = async (values) => {
     try {
       let response = await auth_svc.login(values);
       response && navigate("/admin");
+      toast.success("welcome to admin panel");
     } catch (excp) {
       if (excp?.response?.status === 422 || excp?.response?.data?.msg) {
-        setErrData({ ...excp.response.data.msg });
+        toast.error(excp?.response?.data?.msg);
       } else {
         toast.warning(excp?.response?.data?.msg);
       }

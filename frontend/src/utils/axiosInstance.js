@@ -2,7 +2,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 const axiosInstance = axios.create({
   baseURL: "http://localhost:3005",
-  timeout: 4000,
+  timeout: 5000,
+  timeoutErrorMessage: "Server timeout...",
   headers: {
     "content-type": "application/json",
   },
@@ -15,11 +16,11 @@ axiosInstance.interceptors.response.use(
   (error) => {
     if (error.response.status === 401) {
       // needs a logout
-      localStorage.removeItem("access_Token");
-      localStorage.removeItem("active_client");
-      window.location.href = "/login";
+      // localStorage.removeItem("access_Token");
+      // localStorage.removeItem("active_client");
+      // window.location.href = "/login";
     } else if (error.response.status === 404 || error.response.status === 403) {
-      toast.error(error.response.msg);
+      // console.log("fromaxiosError", error ?? error.data);
     } else {
       throw error;
     }

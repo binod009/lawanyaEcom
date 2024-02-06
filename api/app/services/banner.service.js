@@ -6,11 +6,10 @@ class BannerService extends DbService {
     try {
       let bannerSchema = Joi.object({
         bannerName: Joi.string().required(),
-        image: Joi.string().empty(),
+        image: Joi.string().required(),
         status: Joi.string().required(),
       });
       let response = bannerSchema.validate(data);
-
       if (response.error) {
         throw response.error.details[0].message;
       }

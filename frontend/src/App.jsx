@@ -4,7 +4,7 @@ import AdminDashboard from "./components/admindashboard/AdminDashboard";
 import Client from "./components/client/Client";
 import AdminLogin from "./components/admindashboard/admincomponents/AdminLogin";
 import { ToastContainer } from "react-toastify";
-
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <>

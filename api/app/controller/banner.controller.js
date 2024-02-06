@@ -10,14 +10,16 @@ class bannerController {
       if (req.file) {
         body.image = req.file.filename;
       }
+
       this.banner_svc.validateBanner(body);
       let data = await this.banner_svc.createBanner(body);
-
-      res.status(200).json({
-        status: true,
-        msg: "created successfully",
-        result: body,
-      });
+      if (data) {
+        res.status(200).json({
+          status: true,
+          msg: "created successfully",
+          result: body,
+        });
+      }
     } catch (excp) {
       next({ status: 404, msg: excp });
     }

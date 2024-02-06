@@ -5,9 +5,9 @@ class HttpServices {
   headers = {};
   getheaders = (config) => {
     if (config.login) {
-      let access_token = localStorage.getItem("access_token");
-      this.header = {
-        authorization: "Bearer" + access_token,
+      let access_token = localStorage.getItem("access_Token");
+      this.headers = {
+        authorization: "Bearer " + access_token,
         "content-type": "application/json",
       };
     }
@@ -25,6 +25,7 @@ class HttpServices {
       let response = await axiosInstance.post(url, data, {
         headers: this.headers,
       });
+
       return response;
     } catch (error) {
       throw error;
