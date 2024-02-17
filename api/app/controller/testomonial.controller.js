@@ -10,9 +10,9 @@ class TestomonialController {
       if (req.file) {
         body.clientimage = req.file.filename;
       }
+      console.log("frombackend", body);
       this.testo_svc.validateTestomonial(body);
       let result = await this.testo_svc.createTestomonial(body);
-
       res.status(200).json({
         status: true,
         msg: "created successfully",

@@ -4,16 +4,16 @@ const bannerSchema = new mongoose.Schema(
   {
     bannerName: {
       type: String,
-      require: true,
+      required: true,
     },
     image: {
       type: String,
-      require: true,
+      required: true,
     },
     status: {
       type: String,
       enum: ["active", "inactive"],
-      require: true,
+      required: true,
     },
   },
   {

@@ -1,18 +1,15 @@
 const express = require("express");
-const app = express();
+const Auth = require("../app/middleware/auth");
+const ProgrammeController = require("../app/controller/programme.controller");
+let programme_ctrl = new ProgrammeController();
+const app = express.Router();
 
-app.post("/service", (req, res) => {
-  res.status(200).json({
-    messaage: "banner created successfully",
-  });
-});
+app
+  .route("/programme")
+  .post(Auth, programme_ctrl.CreateNewProgramme)
+  .get(Auth, programme_ctrl.getProgramme);
 
-app.get("/service", (req, res) => {
-  res.status(200).json({
-    messaage: "here is your services data",
-    result: [],
-  });
-});
+app.route("/programme/:id").delete(Auth, programme_ctrl.deleteProgramme);
 
 module.exports = app;
 

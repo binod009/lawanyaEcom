@@ -36,17 +36,17 @@ class HttpServices {
     try {
       this.getheaders(config);
       let response = await axiosInstance.get(url, {
-        header: this.headers,
+        headers: this.headers,
       });
       return response;
     } catch (error) {
       throw error;
     }
   };
-  deleteRequest = async (url, data, config = {}) => {
+  deleteRequest = async (url, config = {}) => {
     try {
       this.getheaders(config);
-      let response = await axiosInstance.delete(url, data, {
+      let response = await axiosInstance.delete(url, {
         headers: this.headers,
       });
       return response;

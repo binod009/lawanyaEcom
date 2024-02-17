@@ -6,7 +6,7 @@ const Event_ctrl = new EventController();
 const app = express.Router();
 
 app
-  .route("/")
+  .route("/event")
   .post(Auth, uploader.single("eventimage"), Event_ctrl.CreateEvent)
   .get(Auth, Event_ctrl.GetEvents);
 

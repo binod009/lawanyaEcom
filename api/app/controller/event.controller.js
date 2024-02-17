@@ -1,16 +1,18 @@
 const EventService = require("../services/event.service");
-
+const { dateFormat, timeFormat } = require("../services/format.service");
 class EventController {
   constructor() {
     this.event_svc = new EventService();
   }
   CreateEvent = async (req, res, next) => {
     let body = req.body;
+    console.log("PrevIOUSBACKEND", body);
+    body.eventdate = dateFormat(req.body.eventdate);
+    body.time = timeFormat(req.body.time);
     try {
       if (req.file) {
         body.eventimage = req.file.filename;
       }
-      console.log("this is body", body);
       this.event_svc.validateEvents(body);
       let finres = await this.event_svc.createEvent(body);
       res.status(200).json({

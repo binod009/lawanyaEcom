@@ -9,22 +9,21 @@
   border: none !important;
   margin: 5px;
 }
-
 .ant-collapse-expand-icon {
   color: slategrey;
 }
 .ant-collapse-header-text {
-  color: rgb(30, 91, 151) !important;
+  color: rgb(19, 8, 8);
   font-size: 16px;
   font-weight: 500;
 }
 .ant-collapse-header-collapsible-only:hover {
-  background-color: rgb(209, 209, 217);
+  background-color: rgb(221, 143, 26);
   border-radius: 5px;
 }
 
 .ant-form-item-label > label {
-  color: gray !important;
+  color: rgb(32, 27, 27) !important;
   font-size: 1em !important;
 }
 
@@ -40,4 +39,20 @@
   float: left;
   width: 200px;
   margin-inline-end: 8px;
+}
+
+/* .table-container {
+  overflow-y: auto;
+  height: 60% !important;
+  min-height: 75% !important;
+  border: 1px solid rgb(183, 185, 187);
+} */
+.ant-table-thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.ant-table-width {
+  width: 60%;
 }

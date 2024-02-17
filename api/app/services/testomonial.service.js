@@ -7,8 +7,8 @@ class TestomonialService extends DbService {
     try {
       let testoSchema = Joi.object({
         clientname: Joi.string().required(),
-        clientimage: Joi.string().empty(),
-        review: Joi.string().required(),
+        clientimage: Joi.string().required(),
+        clientreview: Joi.string().required(),
       });
       let response = testoSchema.validate(data);
       if (response.error) {

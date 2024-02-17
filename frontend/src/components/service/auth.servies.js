@@ -1,5 +1,6 @@
 import HttpServices from "./http-service";
 class AuthServices extends HttpServices {
+  
   login = async (data) => {
     try {
       let loginres = await this.postRequest("/login", data);
@@ -16,7 +17,7 @@ class AuthServices extends HttpServices {
     } catch (error) {
       throw error;
     }
-  };
+  };  
 
   getLoggedInUser = async () => {
     try {

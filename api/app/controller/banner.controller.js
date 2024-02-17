@@ -6,7 +6,7 @@ class bannerController {
 
   bannerUpload = async (req, res, next) => {
     let body = req.body;
-    try {
+     try {
       if (req.file) {
         body.image = req.file.filename;
       }

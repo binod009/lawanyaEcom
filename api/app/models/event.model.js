@@ -4,9 +4,9 @@ const eventSchema = new mongoose.Schema(
   {
     eventimage: String,
     time: String,
-    eventdata: {
+    eventdate: {
       type: Date,
-      default: Date.now,
+      required: true,
     },
     description: String,
   },

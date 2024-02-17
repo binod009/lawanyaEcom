@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const testoSchema = new mongoose.Schema(
   {
     clientname: String,
-    clientimage: String,
-    clientreview: String,
+    clientimage: { type: String, required: true },
+    clientreview: { type: String, required: true },
   },
   {
     autoIndex: true,
