@@ -54,7 +54,7 @@ const TestomonialTableData = () => {
   ];
   const handleDelete = async (id) => {
     try {
-      let res = await testo_svc.deletetestomonialById(id);
+      let res = await testo_svc.deleteTestomonialById(id);
       if (res) {
         message.success(res.msg);
         fetchtestomonialData();

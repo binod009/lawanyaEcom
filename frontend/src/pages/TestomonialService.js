@@ -1,9 +1,9 @@
 import HttpServices from "../components/service/http-service";
 
 class TestomonialService extends HttpServices {
-  createTestomonial = (data) => {
+  createTestomonial = async (data) => {
     try {
-      let response = this.postRequest("/testomonial", data, {
+      let response = await this.postRequest("/testomonial", data, {
         login: true,
         files: true,
       });
@@ -13,18 +13,20 @@ class TestomonialService extends HttpServices {
     }
   };
 
-  getAllTestomonial = () => {
+  getAllTestomonial = async () => {
     try {
-      let response = this.getRequest("/testomonial", { login: true });
+      let response = await this.getRequest("/testomonial", { login: true });
       return response;
     } catch (excp) {
       throw excp;
     }
   };
 
-  deleteTestomonialById = (id) => {
+  deleteTestomonialById = async (id) => {
     try {
-      let response = this.deleteRequest("/testomonial" + id, { login: true });
+      let response = await this.deleteRequest("/testomonial/" + id, {
+        login: true,
+      });
       return response;
     } catch (excp) {
       throw excp;
