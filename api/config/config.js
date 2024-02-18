@@ -10,7 +10,7 @@ const Config = {
   },
   DB: {
     PROTOCOL: "mongodb",
-    HOST: "localhost",
+    HOST: "127.0.0.1",
     NAME: "lawanya",
     USER: "",
     PWD: "",
@@ -24,5 +24,3 @@ const Config = {
 //   }@cluster0.8brv6gn.mongodb.net/`;
 // }
 module.exports = Config;
-
-// 127.0.0.1
