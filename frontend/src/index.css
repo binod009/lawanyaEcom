@@ -41,12 +41,6 @@
   margin-inline-end: 8px;
 }
 
-/* .table-container {
-  overflow-y: auto;
-  height: 60% !important;
-  min-height: 75% !important;
-  border: 1px solid rgb(183, 185, 187);
-} */
 .ant-table-thead {
   position: sticky;
   top: 0;

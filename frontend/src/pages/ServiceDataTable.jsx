@@ -48,8 +48,8 @@ const ServiceDataTable = () => {
     try {
       let res = this.service_svc.deleteProgram(id);
       fetchServiceData();
-    } catch (error) {
-      message.error(error);
+    } catch (excp) {
+      message.error(excp);
     }
   };
 
@@ -63,8 +63,8 @@ const ServiceDataTable = () => {
         return item;
       });
       setServiceData(addedKey);
-    } catch (error) {
-      console.log(error);
+    } catch (excp) {
+      message.error(excp);
     }
   };
 
