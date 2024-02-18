@@ -2,7 +2,7 @@ const Config = require("../../config/config");
 const UserService = require("../services/user.Service");
 const nodemailer = require("nodemailer");
 const { SMTP } = require("../../config/config");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 const jwt = require("jsonwebtoken");
 
