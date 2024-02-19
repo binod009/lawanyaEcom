@@ -5,7 +5,7 @@ message.config({
   duration: 2,
 });
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3005",
+  baseURL: "http://localhost:10000",
   timeout: 3000,
   timeoutErrorMessage: "Server timeout...",
   headers: {
