@@ -39,9 +39,9 @@ app.use((error, req, res, next) => {
   });
 });
 
-app.listen(10000, "localhost", (err) => {
+app.listen(3005, "localhost", (err) => {
   if (!err) {
-    console.log("Server is Listening to the Port 10000");
+    console.log("Server is Listening to the Port 3005");
     console.log("Press CTRl+C to Disconnect");
   }
 });

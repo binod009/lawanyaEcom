@@ -5,12 +5,13 @@ const ProtectedRoute = ({ token, children }) => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
+    console.log("am navigate useEffect");
     if (localStorage.getItem("access_Token")) {
       setLoading(!loading);
     } else {
       navigate("/login");
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <>

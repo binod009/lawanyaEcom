@@ -16,5 +16,7 @@ let DB_URL = process.env.MONGO_URL;
 //     ":" +
 //     DB.PORT;
 // }
-
-mongoose.connect(DB_URL);
+mongoose
+  .connect(DB_URL)
+  .then(() => console.log("Connected to MongoDB Atlas"))
+  .catch((err) => console.error("Error connecting to MongoDB Atlas:", err));
