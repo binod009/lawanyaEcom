@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const bannerSchema = new mongoose.Schema(
   {
-    bannerName: {
+    bannername: {
       type: String,
       required: true,
     },
@@ -13,6 +13,10 @@ const bannerSchema = new mongoose.Schema(
     status: {
       type: String,
       enum: ["active", "inactive"],
+      required: true,
+    },
+    key: {
+      type: String,
       required: true,
     },
   },

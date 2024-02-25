@@ -1,16 +1,26 @@
 import { Table, Tag, Image, message } from "antd";
 import React, { useEffect, useState } from "react";
-import carousel_svc from "./CarouselService";
-import { MdDelete } from "react-icons/md";
 
+import { MdDelete } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+  fetchdataAsync,
+  clear_response,
+  carouseldeleteAsync,
+} from "../../slice/carousel";
 const DataTable = () => {
-  const [carouselData, setCarouselData] = useState();
+  const { values, response, error } = useSelector((state) => state.carousel);
+  const [messageApi, contextHolder] = message.useMessage();
+  console.log("coming from redux", values);
+  const dispatch = useDispatch();
   const CarouselColumns = [
     {
-      title: "banner Name",
-      dataIndex: "bannerName",
       key: "bannerName",
-      render: (bannerName) => <p>{bannerName}</p>,
+      title: "banner Name",
+      dataIndex: "bannername",
+
+      render: (bannername) => <p>{bannername}</p>,
     },
     {
       title: "image",
@@ -39,63 +49,60 @@ const DataTable = () => {
 
     {
       title: "action",
-      key: "_obj",
+      dataIndex: "_id",
+      key: "_id",
       fixed: "right",
       width: 120,
-      render: (_, _obj) => (
+      render: (_, { _id }) => (
         <MdDelete
-          className="cursor-pointer hover:scale-125"
-          size={24}
           color="red"
-          onClick={() => {
-            handleDelete(_obj._id);
-          }}
+          size={28}
+          className="hover:scale-125 transition-all ease"
+          onClick={() => dispatch(carouseldeleteAsync(_id))}
         />
       ),
     },
   ];
 
-  const handleDelete = async (id) => {
-    try {
-      let res = await carousel_svc.deleteCarouselById(id);
-      if (res) {
-        message.success(res.msg);
-        fetchBannerData();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const fetchBannerData = async () => {
+  //   try {
+  //     let res = await carousel_svc.getAllCarousel();
+  //     if (res.result.length > 0) {
+  //       let addedKey = res?.result.map((item, index) => {
+  //         item.key = index + 1;
+  //         return item;
+  //       });
 
-  // if (!localStorage.getItem("access_Token")) navigate("/login");
-  const fetchBannerData = async () => {
-    try {
-      let res = await carousel_svc.getAllCarousel();
-      let addedKey = res?.result.map((item, index) => {
-        item.key = index + 1;
-        return item;
-      });
-      setCarouselData(addedKey);
-      //key prop add to response data
-      //DataTable will map single data with the help of keys and rowSelection function works;
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //       dispatch(update_carousel(addedKey));
+  //     }
+
+  //     //key prop add to response data
+  //     //DataTable will map single data with the help of keys and rowSelection function works;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
   useEffect(() => {
-    fetchBannerData();
-    setInterval(() => {
-      fetchBannerData();
-    }, 30000);
-  }, []);
+    if (values.length === 0) {
+      console.log("Mylenght", values.length);
+      dispatch(fetchdataAsync());
+    }
+    if (response) {
+      messageApi.success(response);
+      dispatch(clear_response());
+    }
+  }, [response, error]);
+
   return (
     <>
+      {contextHolder}
       <Table
         size="medium"
-        dataSource={carouselData}
         style={{
           height: 455,
         }}
+        dataSource={values}
         bordered
         scroll={{ y: 350 }}
         columns={CarouselColumns}

@@ -1,23 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form, Input, Select, Upload, message } from "antd";
 import carousel_svc from "./CarouselService";
 import { UploadOutlined } from "@ant-design/icons";
-
+import { useDispatch, useSelector } from "react-redux";
+import {
+  add_carousel,
+  createcarouselAsync,
+  resetfield,
+} from "../../slice/carousel";
+import { generateRandomKey } from "../service/GenerateKey";
 const CarouselForm = () => {
+  let { error, response, clearformfield } = useSelector(
+    (state) => state.carousel
+  );
+  const [messageApi, contextHolder] = message.useMessage();
+  const [form] = Form.useForm();
+  const dispatch = useDispatch();
   const [file, setFile] = useState({});
-  const submitCarouselFrom = async (values) => {
+
+  const submitCarouselFrom = (values) => {
     values.image = file;
-
-    try {
-      let res = await carousel_svc.CreateCarousel(values);
-      if (res) message.success(res.msg);
-      form.resetFields();
-      setFile({});
-    } catch (err) {
-      console.log(err);
-    }
+    values.key = generateRandomKey();
+    console.log("fromfrontend", values);
+    dispatch(createcarouselAsync(values));
   };
-
   const normFile = (e) => {
     if (Array.isArray(e)) {
       return e;
@@ -25,10 +31,19 @@ const CarouselForm = () => {
     return e && e.fileList;
   };
 
-  const [form] = Form.useForm();
+  useEffect(() => {
+    error && messageApi.error(error);
+    response && messageApi.success(response);
+    if (clearformfield) {
+      form.resetFields();
+      setFile({});
+      dispatch(resetfield());
+    }
+  }, [response, error, clearformfield]);
 
   return (
     <>
+      {contextHolder}
       <div className="w-[45%] h-auto p-8 shadow">
         <h1 className="text-slate-700 font-bold text-lg">Create Carousel</h1>
         <Form
@@ -39,7 +54,7 @@ const CarouselForm = () => {
         >
           <Form.Item
             label="Banner name"
-            name="bannerName"
+            name="bannername"
             className="mt-5"
             rules={[{ required: true, message: "" }]}
           >

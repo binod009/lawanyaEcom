@@ -5,9 +5,10 @@ class BannerService extends DbService {
   validateBanner = (data) => {
     try {
       let bannerSchema = Joi.object({
-        bannerName: Joi.string().required(),
+        bannername: Joi.string().required(),
         image: Joi.string().required(),
         status: Joi.string().required(),
+        key: Joi.string().required(),
       });
       let response = bannerSchema.validate(data);
       if (response.error) {
@@ -21,8 +22,7 @@ class BannerService extends DbService {
   createBanner = async (data) => {
     try {
       let banner_obj = new bannerModel(data);
-      banner_obj.save();
-      return banner_obj;
+      return banner_obj.save();
     } catch (err) {
       throw err;
     }
@@ -38,7 +38,9 @@ class BannerService extends DbService {
 
   deleteBannerById = async (bannerid) => {
     try {
-      return await bannerModel.findByIdAndDelete(bannerid);
+      return await bannerModel.findByIdAndDelete({
+        _id: bannerid,
+      });
     } catch (excp) {
       next({ status: 404, msg: excp });
     }

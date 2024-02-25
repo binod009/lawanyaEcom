@@ -23,7 +23,7 @@ axiosInstance.interceptors.response.use(
       localStorage.removeItem("active_client");
       window.location.href = "/login";
     } else if (error.response.status === 404 || error.response.status === 403) {
-      message.error(error.response.data.msg);
+      throw error.response.data.msg;
     } else {
       throw error;
     }

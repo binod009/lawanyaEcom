@@ -2,17 +2,21 @@ import React, { useState } from "react";
 import { Button, Form, Upload, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import partner_svc from "./PartnerService";
+import useFetchData from "../hooks/useFetchData";
 
 const PartnerManage = () => {
   const [file, setFile] = useState({});
+
   const submitParnterForm = async (values) => {
     console.log("values", values);
     values.image = file;
     try {
       let res = await partner_svc.createParnter(values);
-      if (res) message.success(res.msg);
-      form.resetFields();
-      setFile({});
+      if (res) {
+        message.success(res.msg);
+        form.resetFields();
+        setFile({});
+      }
     } catch (err) {
       console.log(err);
     }

@@ -36,6 +36,7 @@ app.use((error, req, res, next) => {
   res.status(status).json({
     status: status,
     msg: msg,
+    result: [],
   });
 });
 

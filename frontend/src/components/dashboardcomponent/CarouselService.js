@@ -23,6 +23,7 @@ class CarouselService extends HttpServices {
   };
   deleteCarouselById = async (id) => {
     try {
+      console.log("calling Deleteig", id);
       return await this.deleteRequest(`/banner/${id}`, { login: true });
     } catch (error) {
       throw error;
@@ -30,5 +31,5 @@ class CarouselService extends HttpServices {
   };
 }
 
-export const carousel_svc = new CarouselService();
+const carousel_svc = new CarouselService();
 export default carousel_svc;

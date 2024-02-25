@@ -1,9 +1,10 @@
 import { Image, Table, message } from "antd";
 import React, { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
+import useFetchData from "../hooks/useFetchData";
 import partner_svc from "./PartnerService";
 const PartnerDataTable = () => {
-  const [partnerData, setPartnerData] = useState();
+  const { data, loading, error, refreshData } = useFetchData("/partner");
   const PartnerColumns = [
     {
       title: "Image",
@@ -30,44 +31,45 @@ const PartnerDataTable = () => {
           size={28}
           color="red"
           onClick={() => {
-            handleDelete(_obj._id);
+            HandleDelete(_obj._id);
           }}
         />
       ),
     },
   ];
-  const handleDelete = async (id) => {
+  const HandleDelete = async (id) => {
     try {
       let res = await partner_svc.deletePartnerById(id);
       if (res) {
         message.success(res.msg);
-        fetchPartnerData();
+        refreshData();
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const fetchPartnerData = async () => {
-    try {
-      let res = await partner_svc.getAllPartner();
-      //key prop add to response data
-      //DataTable will map single data with the help of keys and rowSelection function works;
-      let addedKey = res?.result.map((item, index) => {
-        item.key = index + 1;
-        return item;
-      });
-      setPartnerData(addedKey);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    fetchPartnerData();
-    setInterval(() => {
-      fetchPartnerData();
-    }, 30000);
-  }, []);
+  // const fetchPartnerData = async () => {
+  //   try {
+  //     let res = await partner_svc.getAllPartner();
+  //     //key prop add to response data
+  //     //DataTable will map single data with the help of keys and rowSelection function works;
+  //     let addedKey = res?.result.map((item, index) => {
+  //       item.key = index + 1;
+  //       return item;
+  //     });
+  //     setPartnerData(addedKey);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchPartnerData();
+  //   setInterval(() => {
+  //     fetchPartnerData();
+  //   }, 30000);
+  // }, []);
   return (
     <>
       <Table
@@ -76,7 +78,7 @@ const PartnerDataTable = () => {
           height: "170px",
         }}
         scroll={{ y: 130 }}
-        dataSource={partnerData}
+        dataSource={data}
         columns={PartnerColumns}
         className="shadow table-container ant-table-width font-medium"
         pagination={false}

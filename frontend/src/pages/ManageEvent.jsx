@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   DatePicker,
@@ -10,7 +10,9 @@ import {
 } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
-import event_svc from "./EventService";
+import { useDispatch, useSelector } from "react-redux";
+import { createEventAsync } from "../slice/event";
+import { generateRandomKey } from "../components/service/GenerateKey";
 const timezone = require("dayjs/plugin/timezone");
 const utc = require("dayjs/plugin/utc");
 dayjs.extend(utc);
@@ -18,18 +20,14 @@ dayjs.extend(timezone);
 dayjs.tz.setDefault("Asia/Kathmandu");
 
 const ManageEvent = () => {
+  const [form] = Form.useForm();
+  const dispatch = useDispatch();
   const [file, setFile] = useState({});
-  const submitCarouselFrom = async (values) => {
+
+  const submitEventForm = async (values) => {
     values.eventimage = file;
-    console.log("frontend", values);
-    try {
-      let res = await event_svc.createEvent(values);
-      if (res) message.success(res.msg);
-      form.resetFields();
-      setFile({});
-    } catch (err) {
-      console.log(err);
-    }
+    values.key = generateRandomKey();
+    dispatch(createEventAsync(values));
   };
 
   const normFile = (e) => {
@@ -39,7 +37,6 @@ const ManageEvent = () => {
     return e && e.fileList;
   };
 
-  const [form] = Form.useForm();
   return (
     <>
       <div className=" w-[45%] h-auto p-5 pl-10 shadow">
@@ -48,7 +45,7 @@ const ManageEvent = () => {
           className="font-medium text-[#122538]"
           form={form}
           layout="vertical"
-          onFinish={submitCarouselFrom}
+          onFinish={submitEventForm}
         >
           <Form.Item
             name="eventimage"

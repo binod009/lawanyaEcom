@@ -1,9 +1,14 @@
 import { Image, Table, message } from "antd";
 import React, { useEffect, useState } from "react";
 import event_svc from "./EventService";
+import { useSelector, useDispatch } from "react-redux";
 import { MdDelete } from "react-icons/md";
+import { fetchEventDataAsync } from "../slice/event";
+import { eventdeleteAsync } from "../slice/event";
 const EventDataTable = () => {
-  const [eventData, setEventData] = useState();
+  const { eventdata, response, error } = useSelector((state) => state.event);
+  const [messageApi, contextHolder] = message.useMessage();
+  const dispatch = useDispatch();
   const EventColumns = [
     {
       title: "S.N",
@@ -13,7 +18,7 @@ const EventDataTable = () => {
     },
     {
       title: "Image",
-      dataIndex: "image",
+      dataIndex: "eventimage",
       key: "eventimage",
       render: (_, { eventimage }) => (
         <Image
@@ -26,7 +31,7 @@ const EventDataTable = () => {
       title: "event starting date",
       key: "eventdate",
       dataIndex: "eventdate",
-      render: (ed) => <p>{event_svc.convertDateFormat(ed.eventdate)}</p>,
+      render: (_, ed) => <p>{event_svc.convertDateFormat(ed.eventdate)}</p>,
     },
     {
       title: "Event starting time",
@@ -43,58 +48,36 @@ const EventDataTable = () => {
     },
     {
       title: "action",
-      key: "_obj",
+      dataIndex: "_id",
+      key: "_id",
       fixed: "right",
-
-      render: (_, _obj) => (
+      render: (_, { _id }) => (
         <MdDelete
           className="cursor-pointer hover:scale-125"
           size={24}
           color="red"
           onClick={() => {
-            handleDelete(_obj._id);
+            dispatch(eventdeleteAsync(_id));
           }}
         />
       ),
     },
   ];
-  const handleDelete = async (id) => {
-    try {
-      let res = await event_svc.deleteEventById(id);
-      if (res) {
-        message.success(res.msg);
-        fetchEventData();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
-  const fetchEventData = async () => {
-    try {
-      let res = await event_svc.getAllEvents();
-      //key prop add to response data
-      //DataTable will map single data with the help of keys and rowSelection function works;
-      let addedKey = res?.result.map((item, index) => {
-        item.key = index + 1;
-        return item;
-      });
-      setEventData(addedKey);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   useEffect(() => {
-    fetchEventData();
-    setInterval(() => {
-      fetchEventData();
-    }, 30000);
-  }, []);
+    if (eventdata.length === 0) {
+      dispatch(fetchEventDataAsync());
+    }
+    response && messageApi.success(response);
+    error && messageApi.error(error);
+  }, [response, error]);
+
   return (
     <>
+      {contextHolder}
       <Table
         size="medium"
-        dataSource={eventData}
+        dataSource={eventdata}
         style={{
           height: 475,
         }}

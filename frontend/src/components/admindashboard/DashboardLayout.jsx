@@ -9,7 +9,7 @@ const DashboardLayout = () => {
         <div className="flex-1">
           <DashBoardHeader />
           <div className="flex items-center gap-10 m-5 justify-around h-[calc(100%-15%)]">
-            <Outlet />
+            <Outlet key={"xyz"} />
           </div>
         </div>
       </div>

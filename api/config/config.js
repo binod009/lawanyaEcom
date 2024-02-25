@@ -18,9 +18,4 @@ const Config = {
   },
 };
 
-// DB: {
-//   host: `mongodb+srv://${[process.env.MONGODB_USERNAME]}:${
-//     process.env.MONGODB_PASSWORD
-//   }@cluster0.8brv6gn.mongodb.net/`;
-// }
 module.exports = Config;

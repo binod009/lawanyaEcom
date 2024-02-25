@@ -52,10 +52,7 @@ const router = createBrowserRouter([
       {
         key: "3",
         path: "/admin/partner",
-        element: [
-          <PartnerManage key="partnermanage" />,
-          <PartnerDataTable key="partnertable" />,
-        ],
+        element: <PartnerManage key="partnermanage" />,
       },
       {
         key: "4",
