@@ -5,7 +5,7 @@ const routes = require("./route/index");
 
 const app = express();
 app.use(helmet());
-const port = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4000;
 
 //This will allow the frontend to get access my backend {files ,image}
 app.use((req, res, next) => {
@@ -41,9 +41,9 @@ app.use((error, req, res, next) => {
   });
 });
 
-app.listen(3005, "localhost", (err) => {
+app.listen(PORT, "localhost", (err) => {
   if (!err) {
-    console.log("Server is Listening to the Port 3005");
+    console.log("Server is Listening to the Port", PORT);
     console.log("Press CTRl+C to Disconnect");
   }
 });
