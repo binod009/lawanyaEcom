@@ -3,8 +3,19 @@ import React, { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import useFetchData from "../hooks/useFetchData";
 import partner_svc from "./PartnerService";
+import {
+  deletePartnerAsync,
+  fetchpartnerDataAsync,
+  clear_response,
+  resetfield,
+} from "../slice/partner";
+import { useDispatch, useSelector } from "react-redux";
 const PartnerDataTable = () => {
-  const { data, loading, error, refreshData } = useFetchData("/partner");
+  const { partnerdata, response, error } = useSelector(
+    (state) => state.partner
+  );
+  const dispatch = useDispatch();
+  const [messageApi, contextHolder] = message.useMessage();
   const PartnerColumns = [
     {
       title: "Image",
@@ -22,63 +33,43 @@ const PartnerDataTable = () => {
 
     {
       title: "action",
-      key: "_obj",
+      key: "_id",
+      dataIndex: "_id",
       fixed: "right",
       width: 120,
-      render: (_, _obj) => (
+      render: (_, { _id }) => (
         <MdDelete
           className="cursor-pointer hover:scale-125"
           size={28}
           color="red"
           onClick={() => {
-            HandleDelete(_obj._id);
+            dispatch(deletePartnerAsync(_id));
           }}
         />
       ),
     },
   ];
-  const HandleDelete = async (id) => {
-    try {
-      let res = await partner_svc.deletePartnerById(id);
-      if (res) {
-        message.success(res.msg);
-        refreshData();
-      }
-    } catch (error) {
-      console.log(error);
+
+  useEffect(() => {
+    if (partnerdata.length === 0) {
+      dispatch(fetchpartnerDataAsync());
     }
-  };
-
-  // const fetchPartnerData = async () => {
-  //   try {
-  //     let res = await partner_svc.getAllPartner();
-  //     //key prop add to response data
-  //     //DataTable will map single data with the help of keys and rowSelection function works;
-  //     let addedKey = res?.result.map((item, index) => {
-  //       item.key = index + 1;
-  //       return item;
-  //     });
-  //     setPartnerData(addedKey);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchPartnerData();
-  //   setInterval(() => {
-  //     fetchPartnerData();
-  //   }, 30000);
-  // }, []);
+    if (response) {
+      messageApi.success(response);
+      dispatch(clear_response());
+    }
+    error && messageApi.error(error);
+  }, [response, error]);
   return (
     <>
+      {contextHolder}
       <Table
         size="medium"
         style={{
           height: "170px",
         }}
         scroll={{ y: 130 }}
-        dataSource={data}
+        dataSource={partnerdata}
         columns={PartnerColumns}
         className="shadow table-container ant-table-width font-medium"
         pagination={false}

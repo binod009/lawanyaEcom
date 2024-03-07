@@ -1,11 +1,33 @@
 import { Image, Table, message } from "antd";
-import React, { useEffect, useState } from "react";
 import testo_svc from "./TestomonialService";
 import service_svc from "./service.Service";
 import { MdDelete } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import {
+  fetchTestoData,
+  createTestoAsync,
+  deleteTestoById,
+} from "../slice/testomonial";
+import { current } from "@reduxjs/toolkit";
 
 const TestomonialTableData = () => {
-  const [testomonialData, setTestomonialData] = useState();
+  const { testomonialData, response, btn_loading } = useSelector(
+    (state) => state.testomonial
+  );
+  console.log("testomonialdata", testomonialData);
+  const dispatch = useDispatch();
+  const [messageApi, contextHolder] = message.useMessage({
+    duration: 1,
+  });
+
+  useEffect(() => {
+    if (testomonialData.length === 0) {
+      dispatch(fetchTestoData());
+    }
+    response && messageApi.success(response);
+  }, []);
+
   const testomonialColumns = [
     {
       title: "Client Name",
@@ -57,45 +79,29 @@ const TestomonialTableData = () => {
       let res = await testo_svc.deleteTestomonialById(id);
       if (res) {
         message.success(res.msg);
-        fetchtestomonialData();
       }
     } catch (error) {
       console.log(error);
     }
   };
-  const fetchtestomonialData = async () => {
-    try {
-      let res = await testo_svc.getAllTestomonial();
-      //key prop add to response data
-      //DataTable will map single data with the help of keys and rowSelection function works;
-      let addedKey = res?.result.map((item, index) => {
-        item.key = index + 1;
-        return item;
-      });
-      setTestomonialData(addedKey);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    fetchtestomonialData();
-    setInterval(() => {
-      fetchtestomonialData();
-    }, 30000);
-  }, []);
+
   return (
-    <Table
-      size="medium"
-      dataSource={testomonialData}
-      style={{
-        height: 475,
-      }}
-      bordered
-      scroll={{ y: 350 }}
-      columns={testomonialColumns}
-      className="shadow table-container ant-table-width font-thin "
-      pagination={false}
-    />
+    <>
+      {contextHolder}
+      <Table
+        size="medium"
+        dataSource={testomonialData}
+        style={{
+          height: 475,
+        }}
+        loading={btn_loading}
+        bordered
+        scroll={{ y: 350 }}
+        columns={testomonialColumns}
+        className="shadow table-container ant-table-width font-thin "
+        pagination={false}
+      />
+    </>
   );
 };
 

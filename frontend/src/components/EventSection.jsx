@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import EventsCard from "./Reusable/EventsCard";
-
+import { useDispatch, useSelector } from "react-redux";
+import { fetchEventDataAsync } from "../slice/event";
+import program_svc from "../pages/service.Service";
+import event_svc from "../pages/EventService";
 const EventSection = () => {
+  const { eventdata } = useSelector((state) => state.event);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchEventDataAsync());
+  }, []);
   return (
     <>
       <div className="bg-white pb-20 h-auto w-full lg:pb-12">
@@ -10,11 +19,18 @@ const EventSection = () => {
         </div>
         <div className="lg:max-w-7xl mx-auto p-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            <EventsCard />
-            <EventsCard />
-            <EventsCard />
-            <EventsCard />
-            <EventsCard />
+            {eventdata ? (
+              eventdata.map((item) => (
+                <EventsCard
+                  time={item.time}
+                  date={event_svc.convertDateFormat(item.eventdate)}
+                  description={program_svc.trimmer(item.description)}
+                  image={item.eventimage}
+                />
+              ))
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>

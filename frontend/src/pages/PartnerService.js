@@ -1,7 +1,7 @@
 import HttpServices from "../components/service/http-service";
 
 class PartnerService extends HttpServices {
-  createParnter = async (data) => {
+  createPartner = async (data) => {
     try {
       let res = await this.postRequest("/partner", data, {
         login: true,
@@ -30,5 +30,5 @@ class PartnerService extends HttpServices {
     }
   };
 }
-export const partner_svc = new PartnerService();
+const partner_svc = new PartnerService();
 export default partner_svc;

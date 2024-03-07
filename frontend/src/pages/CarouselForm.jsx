@@ -7,8 +7,8 @@ import {
   add_carousel,
   createcarouselAsync,
   resetfield,
-} from "../../slice/carousel";
-import { generateRandomKey } from "../service/GenerateKey";
+} from "../slice/carousel";
+import { generateRandomKey } from "../components/service/GenerateKey";
 const CarouselForm = () => {
   let { error, response, clearformfield } = useSelector(
     (state) => state.carousel

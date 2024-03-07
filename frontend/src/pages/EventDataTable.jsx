@@ -3,26 +3,25 @@ import React, { useEffect, useState } from "react";
 import event_svc from "./EventService";
 import { useSelector, useDispatch } from "react-redux";
 import { MdDelete } from "react-icons/md";
-import { fetchEventDataAsync } from "../slice/event";
+import { fetchEventDataAsync, clear_response } from "../slice/event";
 import { eventdeleteAsync } from "../slice/event";
+import service_svc from "../pages/service.Service";
 const EventDataTable = () => {
-  const { eventdata, response, error } = useSelector((state) => state.event);
+  const { eventdata, response, error, table_Loading } = useSelector(
+    (state) => state.event
+  );
   const [messageApi, contextHolder] = message.useMessage();
   const dispatch = useDispatch();
   const EventColumns = [
-    {
-      title: "S.N",
-      dataIndex: "key",
-      rowScope: "row",
-      width: 80,
-    },
     {
       title: "Image",
       dataIndex: "eventimage",
       key: "eventimage",
       render: (_, { eventimage }) => (
         <Image
-          className="rounded-full h-14 w-14"
+          width={50}
+          height={50}
+          className="rounded-md"
           src={process.env.REACT_APP_API_URL + eventimage}
         />
       ),
@@ -44,7 +43,9 @@ const EventDataTable = () => {
       title: "Event description",
       dataIndex: "description",
       key: "description",
-      render: (desc) => <p>{desc}</p>,
+      render: (desc) => (
+        <p className="text-ellipsis">{service_svc.trimmer(desc)}</p>
+      ),
     },
     {
       title: "action",
@@ -68,9 +69,12 @@ const EventDataTable = () => {
     if (eventdata.length === 0) {
       dispatch(fetchEventDataAsync());
     }
-    response && messageApi.success(response);
+    if (response) {
+      messageApi.success(response);
+      dispatch(clear_response());
+    }
     error && messageApi.error(error);
-  }, [response, error]);
+  }, []);
 
   return (
     <>
@@ -81,6 +85,7 @@ const EventDataTable = () => {
         style={{
           height: 475,
         }}
+        loading={table_Loading}
         bordered
         scroll={{ y: 350 }}
         columns={EventColumns}

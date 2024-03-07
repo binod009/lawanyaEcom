@@ -88,6 +88,14 @@ class AuthController {
       next({ status: 404, msg: excp });
     }
   };
+
+  getLoggedInUser = async (req, res, next) => {
+    res.status(200).json({
+      status: 200,
+      msg: "current user",
+      result: req.auth_user,
+    });
+  };
 }
 
 module.exports = AuthController;

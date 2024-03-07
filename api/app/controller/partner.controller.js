@@ -1,24 +1,25 @@
-const PartnerService = require("../services/partner.Service");
+const PartnerService = require("../services/partner.Service.js");
 
 class PartnerController {
   constructor() {
     this.partner_svc = new PartnerService();
   }
 
-  createPartner = async (req, res, next) => {
+  CreatePartner = async (req, res, next) => {
     let body = req.body;
     try {
       if (req.file) {
         body.image = req.file.filename;
       }
-
       this.partner_svc.validatePartner(body);
-      let result = this.partner_svc.createPartner(body);
-      res.status(200).json({
-        status: true,
-        msg: "successfully created",
-        result: body,
-      });
+      let response = await this.partner_svc.createPartner(body);
+      if (response) {
+        res.status(200).json({
+          status: true,
+          msg: "successfully created",
+          result: response,
+        });
+      }
     } catch (excp) {
       next({ status: 404, msg: excp });
     }

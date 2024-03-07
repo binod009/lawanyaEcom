@@ -4,11 +4,11 @@ import Client from "./components/client/Client";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProtectedRoute from "./ProtectedRoute";
-import AdminLogin from "./components/dashboardcomponent/AdminLogin";
+import AdminLogin from "./pages/AdminLogin";
 import DashboardLayout from "./components/admindashboard/DashboardLayout";
 import ManageEvent from "./pages/ManageEvent";
-import CarouselForm from "./components/dashboardcomponent/CarouselForm";
-import DataTable from "./components/dashboardcomponent/DataTable";
+import CarouselForm from "./pages/CarouselForm";
+import CarouselDataTable from "./pages/CarouselDataTable";
 import EventDataTable from "./pages/EventDataTable";
 import PartnerManage from "./pages/PartnerManage";
 import PartnerDataTable from "./pages/PartnerDataTable";
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: (
-      <ProtectedRoute>
+      <ProtectedRoute accessTo="admin">
         <DashboardLayout key="dashboardlayout" />
       </ProtectedRoute>
     ),
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         path: "/admin/carousel",
         element: [
           <CarouselForm key="carouselform" />,
-          <DataTable key="datatable" />,
+          <CarouselDataTable key="datatable" />,
         ],
       },
       {
@@ -52,7 +52,10 @@ const router = createBrowserRouter([
       {
         key: "3",
         path: "/admin/partner",
-        element: <PartnerManage key="partnermanage" />,
+        element: [
+          <PartnerManage key="partnermanage" />,
+          <PartnerDataTable key="partnertable" />,
+        ],
       },
       {
         key: "4",

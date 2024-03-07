@@ -1,8 +1,9 @@
 import HttpServices from "../components/service/http-service";
 import dayjs from "dayjs";
 class EventService extends HttpServices {
+  
   createEvent = async (data) => {
-    console.log("createevent");
+  
     try {
       let res = await this.postRequest("/event", data, {
         login: true,

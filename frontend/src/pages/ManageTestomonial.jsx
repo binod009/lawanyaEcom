@@ -1,22 +1,26 @@
 import { Button, Form, Input, Upload, message } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import testo_svc from "./TestomonialService";
 import { UploadOutlined } from "@ant-design/icons";
+import { generateRandomKey } from "../components/service/GenerateKey";
+import { clear_response, createTestoAsync } from "../slice/testomonial";
+import { useDispatch, useSelector } from "react-redux";
 const ManageTestomonial = () => {
+  const { testomonialData, response, error, btn_loading } = useSelector(
+    (state) => state.testomonial
+  );
+  const dispatch = useDispatch();
+  const [form] = Form.useForm();
+  const [messageApi, contextHolder] = message.useMessage({
+    duration: 1,
+  });
   const [file, setFile] = useState();
   const { TextArea } = Input;
 
   const submittestomonialFrom = async (values) => {
     values.clientimage = file;
-    console.log("from frontend", values);
-    try {
-      let res = await testo_svc.createTestomonial(values);
-      if (res) message.success(res.msg);
-      form.resetFields();
-      setFile({});
-    } catch (err) {
-      console.log(err);
-    }
+    values.key = generateRandomKey();
+    dispatch(createTestoAsync(values));
   };
   const normFile = (e) => {
     if (Array.isArray(e)) {
@@ -24,10 +28,20 @@ const ManageTestomonial = () => {
     }
     return e && e.fileList;
   };
-  const [form] = Form.useForm();
+
+  useEffect(() => {
+    if (response) {
+      messageApi.success(response);
+      dispatch(clear_response());
+      form.resetFields();
+    }
+
+    error && messageApi.error(error);
+  }, []);
 
   return (
     <>
+      {contextHolder}
       <div className=" w-[45%] h-auto p-5 shadow">
         <h1 className="text-slate-700 font-bold text-lg">Create Testomonial</h1>
         <Form
@@ -67,7 +81,7 @@ const ManageTestomonial = () => {
                 return false;
               }}
             >
-              <Button icon={<UploadOutlined />}>Select File</Button>
+              <Button icon={<UploadOutlined />}>client Image</Button>
             </Upload>
           </Form.Item>
 
@@ -88,6 +102,7 @@ const ManageTestomonial = () => {
               style={{
                 height: 45,
               }}
+              loading={btn_loading}
               type="primary"
               className="bg-amber-500 buttonhover "
               block

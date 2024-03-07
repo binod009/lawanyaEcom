@@ -1,25 +1,26 @@
-import { toast } from "react-toastify";
-import { Button, Input, Form, Flex, Spin } from "antd";
+import { Button, Input, Form, Spin } from "antd";
 import { useNavigate } from "react-router-dom";
-import auth_svc from "../service/auth.servies";
+import { useDispatch } from "react-redux";
+import { set_loggedInUser } from "../slice/auth";
 import { useState } from "react";
+import auth_svc from "../components/service/auth.servies";
+import { toast } from "react-toastify";
+
 const AdminLogin = () => {
-  const [loadingSpinner, setloadingSpinner] = useState(false);
+  const dispatch = useDispatch();
+  const [spinnerloading, setSpinnerLoading] = useState(false);
   const [form] = Form.useForm();
   const navigate = useNavigate();
+
   const handleSubmit = async (values) => {
-    setloadingSpinner(true);
-    try {
-      let response = await auth_svc.login(values);
-      if (response) setloadingSpinner(false);
+    setSpinnerLoading(true);
+    let user = await auth_svc.login(values);
+    setSpinnerLoading(false);
+    if (user) {
+      dispatch(set_loggedInUser(user));
+      setSpinnerLoading(false);
+      toast.success("welcome admin");
       navigate("/admin");
-      toast.success("welcome to admin panel");
-    } catch (excp) {
-      if (excp?.response?.status === 422 || excp?.response?.data?.msg) {
-        toast.error(excp?.response?.data?.msg);
-      } else {
-        toast.warning(excp?.response?.data?.msg);
-      }
     }
   };
 
@@ -78,7 +79,7 @@ const AdminLogin = () => {
             </Form>
           </div>
         </div>
-        {loadingSpinner && (
+        {spinnerloading && (
           <Spin
             size="large"
             style={{

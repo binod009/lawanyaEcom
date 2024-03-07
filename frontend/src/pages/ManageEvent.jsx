@@ -11,7 +11,11 @@ import {
 import { UploadOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { useDispatch, useSelector } from "react-redux";
-import { createEventAsync } from "../slice/event";
+import {
+  createEventAsync,
+  clear_response,
+  set_btnloading,
+} from "../slice/event";
 import { generateRandomKey } from "../components/service/GenerateKey";
 const timezone = require("dayjs/plugin/timezone");
 const utc = require("dayjs/plugin/utc");
@@ -21,14 +25,28 @@ dayjs.tz.setDefault("Asia/Kathmandu");
 
 const ManageEvent = () => {
   const [form] = Form.useForm();
+  const [messageApi, contextHolder] = message.useMessage();
+  const { eventdata, response, error, btn_loading } = useSelector(
+    (state) => state.event
+  );
   const dispatch = useDispatch();
   const [file, setFile] = useState({});
 
   const submitEventForm = async (values) => {
+    dispatch(set_btnloading());
     values.eventimage = file;
     values.key = generateRandomKey();
     dispatch(createEventAsync(values));
   };
+
+  useEffect(() => {
+    if (response) {
+      messageApi.success(response);
+      form.resetFields();
+      dispatch(clear_response());
+    }
+    error && messageApi.error(error);
+  }, [eventdata]);
 
   const normFile = (e) => {
     if (Array.isArray(e)) {
@@ -39,6 +57,7 @@ const ManageEvent = () => {
 
   return (
     <>
+      {contextHolder}
       <div className=" w-[45%] h-auto p-5 pl-10 shadow">
         <h1 className="text-slate-700 font-bold text-lg">Create Event</h1>
         <Form
@@ -104,6 +123,7 @@ const ManageEvent = () => {
               type="primary"
               className="bg-amber-500 createbtnhover "
               block
+              loading={btn_loading}
               htmlType="submit"
             >
               Create

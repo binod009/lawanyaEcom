@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Drawer } from "antd";
 import { RiMenu2Line } from "react-icons/ri";
-import { FaFacebookSquare } from "react-icons/fa";
+import { FaFacebook, FaFacebookSquare } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { motion, useScroll } from "framer-motion";
 const Navbar = () => {
@@ -29,9 +29,10 @@ const Navbar = () => {
             <div className="text-center text-white font-medium text-base text-[16px] lg:text-md lg:font-light">
               contact@devsbinod.com
             </div>
-            <div>
+            <a href="https://www.facebook.com/lawanyaintl/" className="z-40">
               <FaFacebookSquare size={18} />
-            </div>
+            </a>
+
             <div>
               <FaWhatsapp size={18} />
             </div>

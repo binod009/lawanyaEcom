@@ -7,6 +7,7 @@ class ProgrammeService {
       let programSchema = Joi.object({
         servicename: Joi.string().required(),
         description: Joi.string().required(),
+        key: Joi.string().required(),
       });
 
       let response = programSchema.validate(data);
@@ -21,8 +22,8 @@ class ProgrammeService {
   createProgramme = async (data) => {
     try {
       let programme_obj = new serviceModel(data);
-      await programme_obj.save();
-      return programme_obj;
+      let res = await programme_obj.save();
+      return res;
     } catch (error) {
       throw error;
     }

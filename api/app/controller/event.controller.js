@@ -8,7 +8,6 @@ class EventController {
 
   CreateEvent = async (req, res, next) => {
     let body = req.body;
-
     body.eventdate = dateFormat(req.body.eventdate);
     body.time = timeFormat(req.body.time);
     try {
@@ -16,11 +15,12 @@ class EventController {
         body.eventimage = req.file.filename;
       }
       this.event_svc.validateEvents(body);
-      let result = this.event_svc.createEvent(body);
+      let data = await this.event_svc.createEvent(body);
+      console.log("frombackednRESULT", data);
       res.status(200).json({
         status: true,
         msg: "create Successfully",
-        result: result,
+        result: data,
       });
     } catch (excp) {
       next({ status: 404, msg: excp });

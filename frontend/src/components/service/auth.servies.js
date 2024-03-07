@@ -1,23 +1,23 @@
 import HttpServices from "./http-service";
 class AuthServices extends HttpServices {
-  
   login = async (data) => {
     try {
-      let loginres = await this.postRequest("/login", data);
-      let loggedin_user = {
-        name: loginres.result.user.name,
-        _id: loginres.result.user._id,
-        status: loginres.result.user.status,
-        role: loginres.result.user.role,
-      };
-      console.log("currentuser", loggedin_user);
-      localStorage.setItem("access_Token", loginres.result.access_Token);
-      localStorage.setItem("active_client", JSON.stringify(loggedin_user));
-      return loggedin_user;
+      let res = await this.postRequest("/login", data);
+      if (res) {
+        let loggedin_user = {
+          name: res.result.user.name,
+          _id: res.result.user._id,
+          status: res.result.user.status,
+          role: res.result.user.role,
+        };
+        localStorage.setItem("access_Token", res.result.access_Token);
+        // localStorage.setItem("active_client", JSON.stringify(loggedin_user));
+        return loggedin_user;
+      }
     } catch (error) {
       throw error;
     }
-  };  
+  };
 
   getLoggedInUser = async () => {
     try {

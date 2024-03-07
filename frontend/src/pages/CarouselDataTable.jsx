@@ -1,6 +1,5 @@
 import { Table, Tag, Image, message } from "antd";
 import React, { useEffect, useState } from "react";
-
 import { MdDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -8,11 +7,14 @@ import {
   fetchdataAsync,
   clear_response,
   carouseldeleteAsync,
-} from "../../slice/carousel";
-const DataTable = () => {
-  const { values, response, error } = useSelector((state) => state.carousel);
+} from "../slice/carousel";
+
+const CarouselDataTable = () => {
+  const { carouseldata, response, error } = useSelector(
+    (state) => state.carousel
+  );
   const [messageApi, contextHolder] = message.useMessage();
-  console.log("coming from redux", values);
+
   const dispatch = useDispatch();
   const CarouselColumns = [
     {
@@ -28,8 +30,8 @@ const DataTable = () => {
       key: "image",
       render: (_, { image }) => (
         <Image
-          width={25}
-          height={25}
+          width={60}
+          height={40}
           className="rounded-full"
           src={process.env.REACT_APP_API_URL + image}
         />
@@ -84,8 +86,7 @@ const DataTable = () => {
   // };
 
   useEffect(() => {
-    if (values.length === 0) {
-      console.log("Mylenght", values.length);
+    if (carouseldata.length === 0) {
       dispatch(fetchdataAsync());
     }
     if (response) {
@@ -102,7 +103,7 @@ const DataTable = () => {
         style={{
           height: 455,
         }}
-        dataSource={values}
+        dataSource={carouseldata}
         bordered
         scroll={{ y: 350 }}
         columns={CarouselColumns}
@@ -113,4 +114,4 @@ const DataTable = () => {
   );
 };
 
-export default DataTable;
+export default CarouselDataTable;

@@ -9,7 +9,7 @@ const Footer = () => {
             <div className="flex items-center justify-center gap-5 ml-auto text-xl text-white font-bold">
               <img
                 className="object-cover h-16 w-20 xl:h-28 xl:w-28"
-                src="https://scontent.fktm3-1.fna.fbcdn.net/v/t39.30808-6/329651997_882705219666501_2015514526253202395_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=CyB89VGLIKgAX-wEUHK&_nc_ht=scontent.fktm3-1.fna&oh=00_AfD1XJBWVhOhZ8Kv5PaGoAa48SoFawheQX1w86wIJbMhQg&oe=65A1DBCC"
+                src={"../assets/image/logo.jpg"}
                 alt="logo"
               />
               <p className="xl:text-lg">Lawanya International Books</p>
@@ -55,6 +55,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
+   
     </div>
   );
 };

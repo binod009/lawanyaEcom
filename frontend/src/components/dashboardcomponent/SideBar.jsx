@@ -24,9 +24,18 @@ const SideBar = () => {
         <ul className="flex flex-col gap-2 mt-5">
           {item.map((item) => (
             <NavLink
+              style={{
+                padding: "20px",
+                borderRadius: "2px",
+                cursor: "pointer",
+                transition: "all",
+                animation: "ease-in",
+              }}
               key={item.id}
               to={item.link}
-              className="p-5 rounded-sm hover:bg-amber-600 cursor-pointer "
+              className={({ isActive }) => {
+                return isActive ? "bg-amber-600" : "";
+              }}
             >
               {item.name}
             </NavLink>

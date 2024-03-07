@@ -1,4 +1,4 @@
-import HttpServices from "../service/http-service";
+import HttpServices from "../components/service/http-service";
 
 class CarouselService extends HttpServices {
   CreateCarousel = async (data) => {

@@ -12,11 +12,11 @@ class TestomonialController {
       }
       console.log("frombackend", body);
       this.testo_svc.validateTestomonial(body);
-      let result = await this.testo_svc.createTestomonial(body);
+      let data = await this.testo_svc.createTestomonial(body);
       res.status(200).json({
         status: true,
         msg: "created successfully",
-        result: result,
+        result: data,
       });
     } catch (excp) {
       next({ status: 404, msg: excp });

@@ -33,6 +33,5 @@ class TestomonialService extends HttpServices {
     }
   };
 }
-
-export const testo_svc = new TestomonialService();
+const testo_svc = new TestomonialService();
 export default testo_svc;

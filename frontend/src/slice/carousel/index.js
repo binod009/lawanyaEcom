@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
-import carousel_svc from "../../components/dashboardcomponent/CarouselService";
+import carousel_svc from "../../pages/CarouselService";
 
 let initialState = {
-  values: [],
+  carouseldata: [],
   error: "",
   response: "",
   clearformfield: false,
@@ -23,7 +23,7 @@ export const carouselSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(createcarouselAsync.fulfilled, (state, action) => {
-        state.values.push(action.payload.result);
+        state.carouseldata.push(action.payload.result);
         state.clearformfield = true;
         state.response = action.payload.msg;
       })
@@ -33,16 +33,16 @@ export const carouselSlice = createSlice({
 
     builder
       .addCase(fetchdataAsync.fulfilled, (state, action) => {
-        state.values = [...state.values, ...action.payload];
+        state.carouseldata = action.payload;
       })
       .addCase(fetchdataAsync.rejected, (state, action) => {
-        initialState = { ...initialState, error: action.payload };
+        state.error = action.payload;
       });
     builder
       .addCase(carouseldeleteAsync.fulfilled, (state, action) => {
         let msg = action.payload.msg;
         state.response = msg;
-        state.values = state.values.filter(
+        state.carouseldata = state.carouseldata.filter(
           (item) => item._id !== action.payload.id
         );
       })
@@ -74,7 +74,7 @@ export const createcarouselAsync = createAsyncThunk(
 
 export const carouseldeleteAsync = createAsyncThunk(
   "carousle/carouseldeleteAsync",
-  async (id, rejectWithValue) => {
+  async (id, { rejectWithValue }) => {
     try {
       let res = await carousel_svc.deleteCarouselById(id);
       return { id: id, msg: res.msg };

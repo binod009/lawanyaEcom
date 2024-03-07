@@ -2,16 +2,22 @@ import { Table, message } from "antd";
 import React, { useEffect, useState } from "react";
 import service_svc from "./service.Service";
 import { MdDelete } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteProgramAsync, fetchprogramDataAsync } from "../slice/program";
+import { clear_response, setloading } from "../slice/partner";
+
 const ServiceDataTable = () => {
-  const [serviceData, setServiceData] = useState();
+  const { programdata, response, error, loading } = useSelector(
+    (state) => state.program
+  );
+
+  const dispatch = useDispatch();
+  const [messageApi, contextHolder] = message.useMessage({
+    duration: 1,
+    top: 10,
+  });
 
   const serviceColumns = [
-    {
-      title: "S.N",
-      dataIndex: "key",
-      rowScope: "row",
-      width: 80,
-    },
     {
       title: "Service name",
       dataIndex: "servicename",
@@ -28,63 +34,44 @@ const ServiceDataTable = () => {
     },
     {
       title: "action",
-      key: "_obj",
-
+      key: "_id",
+      dataIndex: "_id",
       width: 120,
-      render: (_, _obj) => (
+      render: (_, { _id }) => (
         <MdDelete
           className="cursor-pointer hover:scale-125"
           size={24}
           color="red"
           onClick={() => {
-            handleDelete(_obj._id);
+            dispatch(deleteProgramAsync(_id));
           }}
         />
       ),
     },
   ];
 
-  const handleDelete = (id) => {
-    try {
-      let res = this.service_svc.deleteProgram(id);
-      fetchServiceData();
-    } catch (excp) {
-      message.error(excp);
-    }
-  };
-
-  const fetchServiceData = async () => {
-    try {
-      let res = await service_svc.getAllProgram();
-      //key prop add to response data
-      //DataTable will map single data with the help of keys and rowSelection function works;
-      let addedKey = res?.result.map((item, index) => {
-        item.key = index + 1;
-        return item;
-      });
-      setServiceData(addedKey);
-    } catch (excp) {
-      message.error(excp);
-    }
-  };
-
   useEffect(() => {
-    fetchServiceData();
-
-    setInterval(() => {
-      fetchServiceData();
-    }, 30000);
-  }, []);
+    if (programdata.length === 0) {
+      dispatch(fetchprogramDataAsync());
+    }
+    if (response) {
+      messageApi.success(response);
+      dispatch(clear_response());
+    }
+    error && messageApi.error(error);
+  }, [programdata]);
 
   return (
     <>
+      {contextHolder}
       <Table
         size="medium"
-        dataSource={serviceData}
+        dataSource={programdata}
         bordered
         style={{
           height: 460,
         }}
+        loading={loading}
         scroll={{ y: 400 }}
         columns={serviceColumns}
         className="shadow table-container ant-table-width font-medium"

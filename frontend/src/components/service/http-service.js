@@ -1,6 +1,6 @@
 import axios from "axios";
 import axiosInstance from "../../utils/axiosInstance";
-
+import { UseSelector } from "react-redux";
 class HttpServices {
   headers = {};
   getheaders = (config) => {
@@ -25,7 +25,6 @@ class HttpServices {
       let response = await axiosInstance.post(url, data, {
         headers: this.headers,
       });
-
       return response;
     } catch (error) {
       throw error;

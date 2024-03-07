@@ -5,10 +5,11 @@ class PartnerService extends DbService {
   validatePartner = (data) => {
     try {
       let partnerSchema = Joi.object({
-        image: Joi.string().required(),
+        image: Joi.string().empty().required(),
+        key: Joi.string().required(),
       });
-      let res = partnerSchema.validate(data);
-      if (res.error) {
+      let response = partnerSchema.validate(data);
+      if (response.error) {
         throw response.error.details[0].message;
       }
     } catch (err) {
@@ -18,9 +19,9 @@ class PartnerService extends DbService {
 
   createPartner = async (data) => {
     try {
-      let partnerObj = new partnerModel(data);
-      partnerObj.save();
-      return partnerObj;
+      let event_obj = new partnerModel(data);
+      let res = await event_obj.save();
+      return res;
     } catch (err) {
       throw err;
     }

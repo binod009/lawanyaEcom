@@ -35,6 +35,5 @@ class Service extends HttpServices {
     return firstHalf.join(" ") + ".....";
   };
 }
-
-export const service_svc = new Service();
-export default service_svc;
+const program_svc = new Service();
+export default program_svc;

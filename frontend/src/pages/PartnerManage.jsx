@@ -1,25 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form, Upload, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import partner_svc from "./PartnerService";
 import useFetchData from "../hooks/useFetchData";
+import { generateRandomKey } from "../components/service/GenerateKey";
+import { createPartnerAsync, resetfield } from "../slice/partner";
+import { useDispatch, useSelector } from "react-redux";
 
 const PartnerManage = () => {
+  const { response, error, clearformfiled } = useSelector(
+    (state) => state.partner
+  );
+  const dispatch = useDispatch();
+  const [form] = Form.useForm();
+  const [messageApi, contextHolder] = message.useMessage();
   const [file, setFile] = useState({});
 
-  const submitParnterForm = async (values) => {
-    console.log("values", values);
+  const submitParnterForm = (values) => {
     values.image = file;
-    try {
-      let res = await partner_svc.createParnter(values);
-      if (res) {
-        message.success(res.msg);
-        form.resetFields();
-        setFile({});
-      }
-    } catch (err) {
-      console.log(err);
-    }
+    values.key = generateRandomKey();
+    dispatch(createPartnerAsync(values));
   };
 
   const normFile = (e) => {
@@ -29,14 +29,23 @@ const PartnerManage = () => {
     return e && e.fileList;
   };
 
-  const [form] = Form.useForm();
+  useEffect(() => {
+    response && messageApi.success(response);
+    error && messageApi.error(error);
+    if (clearformfiled) {
+      form.resetFields();
+      setFile({});
+      dispatch(resetfield());
+    }
+  }, [response, error, clearformfiled]);
 
   return (
     <>
+      {contextHolder}
       <div className="w-[45%] h-auto p-8 shadow">
         <h1 className="text-slate-700 font-bold text-lg">Create Parnters</h1>
         <Form
-          className="font-medium text-[#122538] space-x-10 p-1.5"
+          className="flex items-center font-medium text-[#122538] space-x-10 p-1.5"
           form={form}
           layout="inline"
           onFinish={submitParnterForm}
@@ -50,6 +59,9 @@ const PartnerManage = () => {
           >
             <Upload
               action=""
+              style={{
+                height: "70px",
+              }}
               listType="picture"
               className="upload-list-inline"
               beforeUpload={(file) => {
@@ -63,7 +75,7 @@ const PartnerManage = () => {
           <Form.Item>
             <Button
               style={{
-                height: 45,
+                height: 40,
               }}
               type="primary"
               className="bg-amber-500 createbtnhover mt-5 px-7"

@@ -5,25 +5,26 @@ let initialState = {
   eventdata: [],
   error: "",
   response: "",
-  clearformfield: false,
+  table_Loading: true,
+  btn_loading: false,
 };
 export const eventSlice = createSlice({
   name: "event",
   initialState,
   reducers: {
     clear_response: (state, action) => {
-      state.response = "";
+      state.response ="";
     },
-    delete_event: (state, action) => {
-      state.values = state.values.filter((item) => item._id !== action.payload);
+    set_btnloading: (state, action) => {
+      state.btn_loading = !state.btn_loading;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(createEventAsync.fulfilled, (state, action) => {
         state.eventdata.push(action.payload.result);
-        state.clearformfield = true;
         state.response = action.payload.msg;
+        state.btn_loading = false;
       })
       .addCase(createEventAsync.rejected, (state, action) => {
         state.error = action.payload;
@@ -32,6 +33,7 @@ export const eventSlice = createSlice({
     builder
       .addCase(fetchEventDataAsync.fulfilled, (state, action) => {
         state.eventdata = action.payload;
+        state.table_Loading = false;
       })
       .addCase(fetchEventDataAsync.rejected, (state, action) => {
         state.error = action.payload;
@@ -62,7 +64,8 @@ export const createEventAsync = createAsyncThunk(
   "event/createEventAsync",
   async (data, { rejectWithValue }) => {
     try {
-      const res = await event_svc.createEvent(data);
+      let res = await event_svc.createEvent(data);
+      console.log("fromredux", res);
       return res;
     } catch (error) {
       return rejectWithValue(error);
@@ -82,5 +85,5 @@ export const eventdeleteAsync = createAsyncThunk(
   }
 );
 
-export const { add_event, delete_event } = eventSlice.actions;
+export const { clear_response, set_btnloading } = eventSlice.actions;
 export default eventSlice.reducer;
