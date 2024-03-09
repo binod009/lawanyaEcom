@@ -25,7 +25,14 @@ app.use("/assets/", express.static("public/"));
 ///setting public directory for accessing file and images
 app.use(express.json());
 require("./config/mongoose.config");
+
+app.get("/", (req, res, next) => {
+  res.status(200).json({
+    msg: "hello from server",
+  });
+});
 app.use(routes);
+
 app.use((req, res, next) => {
   next({ status: 404, msg: "not found" }); //error handeling middleware for invalid route
 });
@@ -43,7 +50,7 @@ app.use((error, req, res, next) => {
 
 app.listen(PORT, "localhost", (err) => {
   if (!err) {
-    console.log("Server is Listening to the Port", PORT);
+    console.log("Server is Listening to the Port");
     console.log("Press CTRl+C to Disconnect");
   }
 });
