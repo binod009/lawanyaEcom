@@ -6,6 +6,10 @@ const partnerSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    key: {
+      type: String,
+      required: true,
+    },
   },
   {
     Timestamp: true,

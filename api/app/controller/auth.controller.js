@@ -2,7 +2,7 @@ const Config = require("../../config/config");
 const UserService = require("../services/user.Service");
 const nodemailer = require("nodemailer");
 const { SMTP } = require("../../config/config");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 const jwt = require("jsonwebtoken");
 
@@ -87,6 +87,14 @@ class AuthController {
     } catch (excp) {
       next({ status: 404, msg: excp });
     }
+  };
+
+  getLoggedInUser = async (req, res, next) => {
+    res.status(200).json({
+      status: 200,
+      msg: "current user",
+      result: req.auth_user,
+    });
   };
 }
 

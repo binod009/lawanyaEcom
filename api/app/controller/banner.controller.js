@@ -6,18 +6,19 @@ class bannerController {
 
   bannerUpload = async (req, res, next) => {
     let body = req.body;
-     try {
+
+    try {
       if (req.file) {
         body.image = req.file.filename;
       }
-
       this.banner_svc.validateBanner(body);
       let data = await this.banner_svc.createBanner(body);
+
       if (data) {
         res.status(200).json({
           status: true,
           msg: "created successfully",
-          result: body,
+          result: data,
         });
       }
     } catch (excp) {

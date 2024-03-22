@@ -1,8 +1,6 @@
-const { ObjectId } = require("mongodb");
 const DbService = require("./db.service");
 const Joi = require("joi");
 const eventModel = require("../models/event.model");
-const { convertDateFormat } = require("./format.service");
 class EventService extends DbService {
   validateEvents = (data) => {
     try {
@@ -11,8 +9,10 @@ class EventService extends DbService {
         eventdate: Joi.date().required(),
         time: Joi.string().required(),
         description: Joi.string().required(),
+        key: Joi.string().required(),
       });
       let response = eventSchema.validate(data);
+
       if (response.error) {
         throw response.error.details[0].message;
       }
@@ -24,7 +24,8 @@ class EventService extends DbService {
   createEvent = async (data) => {
     try {
       let event_obj = new eventModel(data);
-      return await event_obj.save();
+      let res = await event_obj.save();
+      return res;
     } catch (err) {
       throw err;
     }
@@ -33,7 +34,6 @@ class EventService extends DbService {
   getAllEvents = async () => {
     try {
       let result = await eventModel.find({});
-
       return result;
     } catch (err) {
       throw err;

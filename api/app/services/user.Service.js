@@ -59,6 +59,7 @@ class UserService extends DbService {
     }
   };
 
+  
   //find user by userid provided by user
   getUserById = async (data) => {
     try {
@@ -75,7 +76,7 @@ class UserService extends DbService {
     let customErr = {
       [fieldErrorType]: validationErr.error.details[0].message,
     };
-    console.log("customError", customErr);
+
     return customErr;
   };
 }

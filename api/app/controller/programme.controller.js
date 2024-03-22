@@ -7,7 +7,6 @@ class ProgrammeController {
 
   CreateNewProgramme = async (req, res, next) => {
     let body = req.body;
-
     try {
       this.programme_svc.programmeValidator(body);
       let result = await this.programme_svc.createProgramme(body);

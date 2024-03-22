@@ -9,6 +9,7 @@ class TestomonialService extends DbService {
         clientname: Joi.string().required(),
         clientimage: Joi.string().required(),
         clientreview: Joi.string().required(),
+        key: Joi.string().required(),
       });
       let response = testoSchema.validate(data);
       if (response.error) {
@@ -21,9 +22,9 @@ class TestomonialService extends DbService {
 
   createTestomonial = async (data) => {
     try {
-      let testo_obj = await new testoModel(data);
-      testo_obj.save();
-      return testo_obj;
+      let testo_obj = new testoModel(data);
+      let res = await testo_obj.save();
+      return res;
     } catch (err) {
       throw err;
     }
