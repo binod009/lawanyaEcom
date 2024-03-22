@@ -5,7 +5,7 @@ const routes = require("./route/index");
 
 const app = express();
 app.use(helmet());
-
+PORT = process.env.PORT || PORT;
 //This will allow the frontend to get access my backend {files ,image}
 app.use((req, res, next) => {
   res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
@@ -39,9 +39,9 @@ app.use((error, req, res, next) => {
   });
 });
 
-app.listen(3005, "localhost", (err) => {
+app.listen(PORT, "localhost", (err) => {
   if (!err) {
-    console.log("Server is Listening...");
+    console.log("Server is Listening...", PORT);
     console.log("Press CTRl+C to Disconnect");
   }
 });
